@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="15dp"
+    android:padding="2dp">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:cardBackgroundColor="@color/cardBackgroundColor"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="180dp"
+                app:cardBackgroundColor="@color/colorPrimary"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="295dp"
+                        android:layout_marginTop="100dp"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageButton
+                            android:id="@+id/Image_AML"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="16dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/stopwatch" />
+
+                        <ImageButton
+                            android:id="@+id/Image_GPM"
+                            android:layout_width="35dp"
+                            android:layout_height="36dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="16dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/image_XPM"
+                            app:srcCompat="@drawable/coins" />
+
+                        <ImageButton
+                            android:id="@+id/image_XPM"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="16dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/Image_AML"
+                            app:srcCompat="@drawable/stopwatch" />
+
+                        <ImageButton
+                            android:id="@+id/Image_KILLS"
+                            android:layout_width="35dp"
+                            android:layout_height="36dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="16dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/Image_GPM"
+                            app:srcCompat="@drawable/swords" />
+
+                        <TextView
+                            android:id="@+id/Gold_Per_Minute"
+                            android:layout_width="wrap_content"
+                            android:layout_height="19dp"
+                            android:layout_marginEnd="32dp"
+                            android:text="Gold Per Minute"
+                            android:textColor="@color/lose_red"
+                            android:textSize="14sp"
+                            app:layout_constraintBaseline_toBaselineOf="@+id/GPM"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/GPM" />
+
+                        <TextView
+                            android:id="@+id/textView15"
+                            android:layout_width="70dp"
+                            android:layout_height="26dp"
+                            android:layout_marginEnd="16dp"
+                            android:text="XP Per Min"
+                            android:textColor="@color/lose_red"
+                            android:textSize="14sp"
+                            app:layout_constraintBaseline_toBaselineOf="@+id/XPM"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.288"
+                            app:layout_constraintStart_toEndOf="@+id/XPM" />
+
+                        <TextView
+                            android:id="@+id/textView14"
+                            android:layout_width="54dp"
+                            android:layout_height="17dp"
+                            android:layout_marginEnd="104dp"
+                            android:text="Kills"
+                            android:textColor="@color/lose_red"
+                            android:textSize="14sp"
+                            app:layout_constraintBaseline_toBaselineOf="@+id/Average_Kills"
+                            app:layout_constraintEnd_toEndOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textView12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="16dp"
+                            android:text="Average match length"
+                            android:textColor="@color/lose_red"
+                            android:textSize="14sp"
+                            app:layout_constraintBaseline_toBaselineOf="@+id/AML"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/AML" />
+
+                        <TextView
+                            android:id="@+id/AML"
+                            android:layout_width="71dp"
+                            android:layout_height="34dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="16dp"
+                            android:text="TextView"
+                            android:textColor="@color/lose_red"
+                            android:textSize="24sp"
+                            app:layout_constraintStart_toEndOf="@+id/Image_AML"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/Average_Kills"
+                            android:layout_width="55dp"
+                            android:layout_height="27dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="28dp"
+                            android:text="TextView"
+                            android:textColor="@color/lose_red"
+                            android:textSize="24sp"
+                            app:layout_constraintStart_toEndOf="@+id/Image_KILLS"
+                            app:layout_constraintTop_toBottomOf="@+id/GPM" />
+
+                        <TextView
+                            android:id="@+id/GPM"
+                            android:layout_width="58dp"
+                            android:layout_height="32dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="20dp"
+                            android:text="TextView"
+                            android:textColor="@color/lose_red"
+                            android:textSize="24sp"
+                            app:layout_constraintStart_toEndOf="@+id/Image_GPM"
+                            app:layout_constraintTop_toBottomOf="@+id/XPM" />
+
+                        <TextView
+                            android:id="@+id/XPM"
+                            android:layout_width="63dp"
+                            android:layout_height="26dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="22dp"
+                            android:text="TextView"
+                            android:textColor="@color/lose_red"
+                            android:textSize="24sp"
+                            app:layout_constraintStart_toEndOf="@+id/image_XPM"
+                            app:layout_constraintTop_toBottomOf="@+id/AML" />
+                    </android.support.constraint.ConstraintLayout>
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="11dp"
+                        android:text="Loss:"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textColor="@android:color/holo_red_dark"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="23dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Win:"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textColor="@color/win_green"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/Average_Losses"
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        android:layout_marginStart="8dp"
+                        android:text="TextView"
+                        android:textColor="@color/lose_red"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView6"
+                        app:layout_constraintStart_toEndOf="@+id/textView6" />
+
+                    <TextView
+                        android:id="@+id/Average_Wins"
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        android:layout_marginStart="7dp"
+                        android:text="TextView"
+                        android:textColor="@color/lose_red"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView5"
+                        app:layout_constraintStart_toEndOf="@+id/textView5" />
+
+                    <TextView
+                        android:id="@+id/Recent_Match_Stats"
+                        android:layout_width="221dp"
+                        android:layout_height="23dp"
+                        android:layout_marginEnd="107dp"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="86dp"
+                        android:text="Recent Stats  (20 Match Averages)"
+                        android:textColor="@color/lose_red"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.166"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Button
+                        android:id="@+id/refresh_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="42dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Refresh"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                </android.support.constraint.ConstraintLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <ImageView
+                android:id="@+id/hero_Image"
+                android:layout_width="113dp"
+                android:layout_height="110dp"
+                android:layout_marginEnd="212dp"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="33dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@mipmap/ic_launcher_round" />
+
+            <TextView
+                android:id="@+id/Hero_Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="107dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="40dp"
+                android:text="UserName"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                android:textSize="36sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.131"
+                app:layout_constraintStart_toEndOf="@+id/hero_Image"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/Profile_ID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="65dp"
+                android:layout_marginStart="6dp"
+                android:text="TextView"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/hero_Image"
+                app:layout_constraintTop_toBottomOf="@+id/Hero_Name" />
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+</android.support.constraint.ConstraintLayout>

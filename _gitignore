@@ -1,0 +1,16 @@
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+app/src/main/java/com/example/andriatae/mydota2/Fragment/SuperAwesomeCardFragment.java
+app/src/main/java/com/example/andriatae/mydota2/Fragment/SuperAwesomeCardFragment.java
+app/src/main/java/com/example/andriatae/mydota2/Fragment/SuperAwesomeCardFragment.java
+app/src/main/java/com/example/andriatae/mydota2/Interactor/Interactor_API.java
+app/src/main/java/com/example/andriatae/mydota2/Interactor/Interactor_D_interface.java
+app/src/main/java/com/example/andriatae/mydota2/View_Presenter/Presenter.java
+app/src/main/java/com/example/andriatae/mydota2/Fragment/SuperAwesomeCardFragment.java

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#dfdfdf</color>
+    <color name="colorPrimaryDark">#717171</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="cardBackgroundColor">#c3002a</color>
+
+    <color name="toolBarColor">#FF4081</color>
+
+    <color name="win_green">#196b00</color>
+
+    <color name="lose_red">#6e0025</color>
+
+
+</resources>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardview6"
+
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    android:background="@android:color/white"
+    android:padding="50dp">
+
+
+    <FrameLayout
+        android:id="@+id/My_Profile_Frag"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteY="25dp">
+
+
+            <FrameLayout
+                android:id="@+id/fragment_container_user_list"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fargment_container1">
+
+            </FrameLayout>
+
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
+
+                xmlns:tools="http://schemas.android.com/tools"
+
+                android:id="@+id/fargment_container1"
+
+                android:layout_width="match_parent"
+                android:layout_height="198dp">
+
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="visible">
+
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/cardView2"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/cardBackgroundColor"
+                        card_view:layout_constraintBottom_toBottomOf="parent"
+                        card_view:layout_constraintEnd_toEndOf="parent"
+                        card_view:layout_constraintHorizontal_bias="0.0"
+                        card_view:layout_constraintStart_toStartOf="parent"
+                        card_view:layout_constraintTop_toTopOf="parent"
+                        materialdesign:cardBackgroundColor="@color/cardBackgroundColor"
+                        materialdesign:cardCornerRadius="30dp"
+                        materialdesign:cardElevation="2dp">
+
+                        <android.support.constraint.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:visibility="visible">
+
+                            <Button android:id="@+id/button_id"
+
+                                style="@style/Widget.AppCompat.Button.Colored"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:elevation="5dp"
+                                android:text="Find Dota Profile"
+                                android:textColorLink="@android:color/holo_blue_dark"
+                                card_view:layout_constraintHorizontal_bias="0.502"
+                                card_view:layout_constraintVertical_bias="0.155"
+                                materialdesign:layout_constraintBottom_toBottomOf="parent"
+                                materialdesign:layout_constraintEnd_toEndOf="parent"
+                                materialdesign:layout_constraintStart_toStartOf="parent"
+                                materialdesign:layout_constraintTop_toBottomOf="@+id/editText4" />
+
+                            <EditText
+                                android:id="@+id/editText4"
+                                android:layout_width="0dp"
+                                android:layout_height="24dp"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginEnd="121dp"
+                                android:layout_marginStart="24dp"
+                                android:layout_marginTop="56dp"
+                                android:background="@android:color/white"
+                                android:elevation="20dp"
+                                android:ems="10"
+                                android:fadingEdge="horizontal|vertical"
+                                android:fadingEdgeLength="10dp"
+                                android:hint="Enter Steam 32 ID"
+                                android:inputType="textPersonName"
+                                android:textColor="@color/colorPrimaryDark"
+                                card_view:layout_constraintEnd_toEndOf="parent"
+                                card_view:layout_constraintHorizontal_bias="0.0"
+                                card_view:layout_constraintLeft_toLeftOf="parent"
+                                card_view:layout_constraintTop_toTopOf="parent"
+                                materialdesign:layout_constraintStart_toStartOf="parent" />
+
+                            <TextView
+                                android:id="@+id/textView2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="57dp"
+                                android:clickable="true"
+                                android:text="https://steamidfinder.com/"
+                                android:textColor="@android:color/white"
+                                card_view:layout_constraintBottom_toTopOf="@+id/editText4"
+                                card_view:layout_constraintStart_toStartOf="parent" />
+
+                        </android.support.constraint.ConstraintLayout>
+                    </android.support.v7.widget.CardView>
+
+                </android.support.constraint.ConstraintLayout>
+
+
+            </FrameLayout>
+        </android.support.constraint.ConstraintLayout>
+    </FrameLayout>
+
+</android.support.v7.widget.CardView>
