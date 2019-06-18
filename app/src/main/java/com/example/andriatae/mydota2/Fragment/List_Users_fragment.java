@@ -18,7 +18,7 @@ import com.example.andriatae.mydota2.Adapters.Recycle_Adapter;
 import com.example.andriatae.mydota2.Model.Hero_Stats;
 import com.example.andriatae.mydota2.Model.Player_Container;
 import com.example.andriatae.mydota2.R;
-import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface;
+import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface_Activity;
 
 import java.util.HashMap;
 import java.util.List;
@@ -39,7 +39,7 @@ public class List_Users_fragment extends Fragment implements FragmentScripture{
 
     RealmResults<Player_Container>myPlayers;
 
-    Fragment_Interface myInterfacereference;
+    Fragment_Interface_Activity myInterfacereference;
 
     Recycle_Adapter adapter;
     Activity myactivity;
@@ -57,19 +57,12 @@ public class List_Users_fragment extends Fragment implements FragmentScripture{
 //    @BindView((R.id.MyImageButton))
 //    Button userButton;
 
-
-
-
-
-
-
         public List_Users_fragment() {
 
 
             // main_activity=getActivity();
 
         }
-
 
     @Override
     public void onAttach(Activity activity) {
@@ -81,7 +74,7 @@ public class List_Users_fragment extends Fragment implements FragmentScripture{
         // the callback interface. If not, it throws an exception
 
         try {
-            myInterfacereference = (Fragment_Interface) activity;
+            myInterfacereference = (Fragment_Interface_Activity) activity;
 
         } catch (ClassCastException e) {
 
@@ -91,18 +84,9 @@ public class List_Users_fragment extends Fragment implements FragmentScripture{
         }
     }
 
-
-
         @Override
         public void onCreate(Bundle savedInstanceState) {
-
-
             super.onCreate(savedInstanceState);
-
-
-
-
-
 
             //check to see if there are players in the database
 
@@ -175,10 +159,12 @@ public class List_Users_fragment extends Fragment implements FragmentScripture{
                     }
 
 
-                    if (startlisteningmatch == true) {
+                    if (startlisteningmatch) {
 
                         Player_Container myplayer = player_containers.get(player_containers.size() - 1);
 
+                        // Wouldnt have to assert if i was using Kotlin!
+                        assert myplayer != null;
                         int accID = myplayer.getProfile().getAccountId();
 
                         System.out.println(" i am searching for matches with this id" + accID);

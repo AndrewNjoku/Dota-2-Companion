@@ -27,20 +27,18 @@ import io.realm.RealmResults;
 
 public class Recycle_Adapter_Heroes extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    RecycleClickListener myListener;
+    private RecycleClickListener myListener;
 
-    Boolean initialised_heroes=false;
+    private Boolean initialised_heroes=false;
 
-    String image_url="http://cdn.dota2.com";
+    private String image_url="http://cdn.dota2.com";
 
 
     //this adapter is used for 3 recycleviews so needs a tag to distinguish between them
 
-    String tag;
-    Realm heroRealm;
-    myApplication myapp;
+    private myApplication myapp;
 
-    List<Hero_Stats> myresults;
+    private List<Hero_Stats> myresults;
 
 
         public Recycle_Adapter_Heroes(RecycleClickListener myListener,List<Hero_Stats>mylist)

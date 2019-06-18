@@ -166,39 +166,32 @@ public class Recycle_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     }
 
-//    @SuppressWarnings({ "rawtypes", "unchecked" })
-//
-//    public void update(ArrayAdapter arrayAdapter, ArrayList<Player_Container> listOfObject) {
-//        arrayAdapter.clear();
-//
-//        for (Player_Container p : listOfObject) {
-//
-//            arrayAdapter.add(p);
-//        }
-//    }
 
+    /*
+TODO need to update this updat method, clers the current adapter and you are adding the new player
+and will add the new player
+@SuppressWarnings({ "rawtypes", "unchecked" })
 
+public void update(ArrayAdapter arrayAdapter, ArrayList<Player_Container> listOfObject) {
+arrayAdapter.clear();
 
+for (Player_Container p : listOfObject) {
+
+arrayAdapter.add(p);
+}
+}
+*/
 
 
     @Override
     public int getItemCount() {
 
-
-
       return myplayer.size();
 
-
     }
-
-
-
     public void update() {
 
-
-
     }
-
 
    class CardViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 

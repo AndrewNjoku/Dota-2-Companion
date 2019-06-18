@@ -2,7 +2,8 @@ package com.example.andriatae.mydota2.Application;
 
 
 import android.app.Application;
-import android.content.SharedPreferences;
+
+import com.example.andriatae.mydota2.Dagger.ActivityComponent;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -13,6 +14,24 @@ import io.realm.RealmConfiguration;
 public class myApplication extends Application {
     // Called when the application is starting, before any other application objects have been created.
     // Overriding this method is totally optional!
+
+
+    private AppInjector appComponent;
+    //One activity , many fragments means it will be neccessary to pass activity module reference around to share
+    // the singletons
+    private ActivityComponent ActivityComponent;
+
+    //...
+
+    public ActivityComponent createUserComponent(User user) {
+        userComponent = appComponent.plus(new UserModule(user));
+        return userComponent;
+    }
+
+    public void releaseUserComponent() {
+        userComponent = null;
+    }
+
 
     public static myApplication INSTANCE;
   //  private static final String DATABASE_NAME = "MyDatabase";
@@ -88,31 +107,24 @@ public class myApplication extends Application {
 
     public RealmConfiguration getRealm(String name){
 
-        if (name.equals("Player"))
-        {
+        switch (name) {
 
-            return realmConfigurationPlayer;
+            case "Player":
 
-        }
+                return realmConfigurationPlayer;
 
-        if (name.equals("Match"))
-        {
+            case "Match":
 
-            return realmConfigurationMatches;
-        }
+                return realmConfigurationMatches;
+            case "Hero":
 
-        else if (name.equals("Hero")){
+                return realmConfigurationHero;
+            case "Pro":
 
-            return realmConfigurationHero;
-        }
+                return realmConfigurationPro;
+            case "Comedy":
 
-        else if (name.equals("Pro")){
-
-            return realmConfigurationPro;
-        }
-        else if (name.equals("Comedy")){
-
-            return realmConfigurationCOM;
+                return realmConfigurationCOM;
         }
 
         return null;

@@ -9,7 +9,7 @@ import com.example.andriatae.mydota2.Model.Hero_Stats;
 import com.example.andriatae.mydota2.Model.Match_Data;
 import com.example.andriatae.mydota2.Model.Player_Container;
 import com.example.andriatae.mydota2.Model.Pro_Player;
-import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface;
+import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface_Activity;
 
 import java.util.List;
 
@@ -82,7 +82,7 @@ public static int setPrimaryKey(){
 }
 
     @Override
-    public void PlayerToObjectFromApi(int steam32id, final Interactor_D_interface dataWorker, final Fragment_Interface myfragmentinterface)
+    public void PlayerToObjectFromApi(int steam32id, final Interactor_D_interface dataWorker, final Fragment_Interface_Activity myfragmentinterface)
     {
 
         Player_Search_API myPlayerSearch=  myAPI.create(Player_Search_API.class);

@@ -11,26 +11,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.andriatae.mydota2.Adapters.Recent_Matches_Adapter;
 import com.example.andriatae.mydota2.Adapters.RecycleClickListener;
-import com.example.andriatae.mydota2.Adapters.Recycle_Adapter;
 import com.example.andriatae.mydota2.Model.Hero_Stats;
-import com.example.andriatae.mydota2.Model.Player_Container;
 import com.example.andriatae.mydota2.R;
-import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface;
+import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface_Activity;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.realm.Realm;
-import io.realm.RealmChangeListener;
-import io.realm.RealmResults;
 
 /**
  * Created by Andria on 22/03/2018.
@@ -56,19 +49,13 @@ public class List_Matches_Fragment extends Fragment implements FragmentScripture
 
     private Activity myactivity;
 
-    Fragment_Interface  myInterfacereference;
+    Fragment_Interface_Activity myInterfacereference;
     private Map<String,Integer> profileIdPairing;
     private ArrayList<String> mylist;
 
 
 //    @BindView((R.id.MyImageButton))
 //    Button userButton;
-
-
-
-
-
-
 
         public List_Matches_Fragment() {
 
@@ -88,7 +75,7 @@ public class List_Matches_Fragment extends Fragment implements FragmentScripture
             // the callback interface. If not, it throws an exception
 
             try {
-                myInterfacereference = (Fragment_Interface) activity;
+                myInterfacereference = (Fragment_Interface_Activity) activity;
 
             } catch (ClassCastException e) {
 
@@ -103,7 +90,6 @@ public class List_Matches_Fragment extends Fragment implements FragmentScripture
         @Override
         public void onCreate(Bundle savedInstanceState) {
 
-
             super.onCreate(savedInstanceState);
 
             myInterfacereference.setFragmentReferenceChild(this);
@@ -117,17 +103,7 @@ public class List_Matches_Fragment extends Fragment implements FragmentScripture
 
             System.out.println("is this getting called every time on fragment refresh");
 
-
-
-
-
-
-
-
             //check to see if there are players in the database
-
-
-
 
                 }
 

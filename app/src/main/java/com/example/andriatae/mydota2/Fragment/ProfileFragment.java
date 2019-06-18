@@ -21,7 +21,7 @@ import com.example.andriatae.mydota2.Model.Match_Data;
 import com.example.andriatae.mydota2.Model.Player_Container;
 //import com.example.andriatae.mydota2.R;
 import com.example.andriatae.mydota2.R;
-import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface;
+import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface_Activity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -39,16 +39,23 @@ import io.realm.RealmResults;
 public class ProfileFragment extends Fragment implements FragmentScripture {
 
 
-//current player loaded in
-
+//current player container, defaults empty player loaded in.
     Player_Container myPlayerCardHolder;
+
+    //
+    Fragment_Interface_Activity myInterfacereference;
+
     RealmResults<Match_Data>myData;
+
     Match_Data myMatchDataElement;
 
-        RealmResults<Player_Container> myPlayers;
-        RealmResults<Match_Data>myMatchData;
+    RealmResults<Player_Container> myPlayers;
 
-        Fragment_Interface myInterfacereference;
+
+    RealmResults<Match_Data>myMatchData;
+
+
+
         Recycle_Adapter adapter;
         Activity myactivity;
         myApplication mainApp;
@@ -61,47 +68,38 @@ public class ProfileFragment extends Fragment implements FragmentScripture {
     int TXPM;
     int TGPM;
 
-
-
-
-
         // ArrayList<Player_Container> myplayerStorage;
-
-
-
-
-
 
 @BindView((R.id.refresh_button))
 Button myButtonRefresh;
 
-        @BindView((R.id.hero_Image))
-        ImageView userProfileImage;
+@BindView((R.id.hero_Image))
+ImageView userProfileImage;
 
-    @BindView((R.id.Hero_Name))
-    TextView userName;
+@BindView((R.id.Hero_Name))
+TextView userName;
 
-    @BindView((R.id.Profile_ID))
-    TextView userID;
+@BindView((R.id.Profile_ID))
+TextView userID;
 
-    @BindView((R.id.Average_Wins))
-    TextView userAW;
+@BindView((R.id.Average_Wins))
+TextView userAW;
 
-    @BindView((R.id.Average_Losses))
-    TextView userAL;
+@BindView((R.id.Average_Losses))
+TextView userAL;
 
-    @BindView((R.id.AML))
-    TextView userAML;
+@BindView((R.id.AML))
+TextView userAML;
 
-    @BindView((R.id.XPM))
-    TextView userXPM;
+@BindView((R.id.XPM))
+TextView userXPM;
 
-    @BindView((R.id.GPM))
-    TextView userGPM;
+@BindView((R.id.GPM))
+TextView userGPM;
 
 
-    @BindView((R.id.Average_Kills))
-    TextView userAK;
+@BindView((R.id.Average_Kills))
+TextView userAK;
 
 
 
@@ -111,9 +109,6 @@ Button myButtonRefresh;
         public ProfileFragment() {
 
             mainApp=myApplication.get();
-
-
-
 
         }
 
@@ -139,11 +134,22 @@ Button myButtonRefresh;
 
                 myData=realm.where(Match_Data.class).equalTo("player_id", chooser ).findAll();
 
+                System.out.println("Size of the matches returned : " + myData.size());
 
-                System.out.println("SIze of the matches returned"+ myData.size());
+                //Check if matches are loaded
+
+                if (myData.isLoaded()) {
+
+                    System.out.println("Matches are loaded");
+
+                }
+
+                else  {
 
 
-                System.out.println("is matches loaded?"+myData.isLoaded());
+                    System.out.println("Matches aren't loaded ");
+                }
+
 
 
             }
@@ -168,6 +174,7 @@ Button myButtonRefresh;
 
                     for(Player_Container myPerson: myPlayerCard)
                     {
+                     //Secondary check to see if e have got the right player
 
                         if(myPerson.getProfile().getAccountId().equals(playerToGet)){
 
@@ -209,7 +216,8 @@ Button myButtonRefresh;
 
             this.myactivity=activity;
 
-            myInterfacereference = (Fragment_Interface) activity;
+            //TODO deprecated as is, need to pass reference to my activities interface another way
+            myInterfacereference = (Fragment_Interface_Activity) activity;
 
 
             // This makes sure that the container activity has implemented

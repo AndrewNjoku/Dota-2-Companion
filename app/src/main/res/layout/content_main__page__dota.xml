@@ -67,7 +67,8 @@
 
             android:onClick="onColorClicked"
 
-            android:tag="#FFC74B46" />
+            android:tag="#FFC74B46"
+            android:contentDescription="TODO" />
 
 
         <ImageView
@@ -84,7 +85,8 @@
 
             android:onClick="onColorClicked"
 
-            android:tag="#FFC74B46" />
+            android:tag="#FFC74B46"
+            android:contentDescription="TODO" />
 
 
         <ImageView

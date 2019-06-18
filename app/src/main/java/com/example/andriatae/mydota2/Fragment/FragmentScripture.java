@@ -13,14 +13,14 @@ public interface FragmentScripture {
     // This interface will define shared methods for All of my fragments
 
 
-    public void refreshFrame();
+    void refreshFrame();
 
-    public void initMatchValuesToSHow();
+    void initMatchValuesToSHow();
 
+    //THis hsould be handled by presenter
     void searchDatabaseAndAddHeroesToArray(List<Hero_Stats> strength, List<Hero_Stats>agility, List<Hero_Stats>intellignece);
-
 
     void changeRecycleAndRefresh(int player_id_from_name);
 
-    public void initialiseherotab();
+    void initialiseherotab();
 }

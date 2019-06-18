@@ -11,15 +11,16 @@ import com.example.andriatae.mydota2.Interactor.Interactor_API;
 import com.example.andriatae.mydota2.Interactor.Interactor_A_Interface;
 import com.example.andriatae.mydota2.Interactor.Interactor_D_interface;
 import com.example.andriatae.mydota2.Interactor.Interactor_Data;
-import com.example.andriatae.mydota2.Main_Activity.Main_Page_Dota;
+
+import java.util.Map;
 
 /**
  * Created by Andria TAE on 13/03/2018.
  */
 
-public class Presenter {
+public class Presenter implements Fragment_Interface_Activity.Presenter{
 
-    Fragment_Interface myfragmentinterface;
+    Fragment_Interface_Activity myfragmentinterface;
 
     Activity activity;
 
@@ -39,38 +40,17 @@ public class Presenter {
 
     Fragment myMainFrag;
 
-
     Interactor_A_Interface apiWorker;
-
     Interactor_D_interface dataWorker;
 
 //View myView;
 
+    public Presenter(Fragment_Interface_Activity myActivity) {
 
-    //constructor for no initial action on fragment loading
-    public Presenter(Activity myActivity, FragmentScripture myProfileFrag, FragmentScripture myHeroFrag) {
-
-        // There will only be two fragments at the point that this presenter is created, i can use setters later on as fragments are created
-
-//        this.myHeroFrag=myHeroFrag;
-//        this.myProfileFrag=myProfileFrag;
-
-        //reference to activity interface
-
-        this.activity = myActivity;
+        myfragmentinterface = (Fragment_Interface_Activity) myActivity;
 
 
-        myfragmentinterface = (Fragment_Interface) myActivity;
-
-
-//        myMainFrag=myfragmentinterface.getSuperAwesomeFragment(0);
-
-
-        //myScript=(FragmentScripture)myMainFrag;
-        System.out.println("Just set the fragment interface");
-
-
-        System.out.println("new presenter created :");
+        //TODO these are application scope modules which need to be accessed as such
 
         apiWorker = new Interactor_API();
 
@@ -118,7 +98,6 @@ public class Presenter {
     public void getPlayerDataPutInRealm(int steamID) {
 
         // apiWorker.initialisePlayerApi();
-
 
         apiWorker.PlayerToObjectFromApi(steamID, dataWorker, myfragmentinterface);
 
@@ -173,7 +152,7 @@ public class Presenter {
 
 
     public void getHeroPutInFragment() {
-        System.out.println("in get get heroes in main prsenter");
+        System.out.println("in get get heroes in main presenter");
 
         dataWorker.getHeroPutInFragment(myHeroFrag);
 
@@ -192,6 +171,26 @@ public class Presenter {
 
         this.myMatchFrag = list_matches_fragment;
 
+
+    }
+
+    @Override
+    public void activateMatchAPIForFragment(int account_id) {
+
+    }
+
+    @Override
+    public void setPlayerArray(Map<String, Integer> nameIdPairing) {
+
+    }
+
+    @Override
+    public Map<String, Integer> getUsers() {
+        return null;
+    }
+
+    @Override
+    public void getHeroes() {
 
     }
 }

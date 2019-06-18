@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewCompat;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,32 +18,28 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 
 import com.example.andriatae.mydota2.Adapters.Matches_Spinner_Adapter;
-import com.example.andriatae.mydota2.Adapters.Recent_Matches_Adapter;
 import com.example.andriatae.mydota2.Adapters.RecycleClickListener;
 
 import com.example.andriatae.mydota2.Application.myApplication;
 
-import com.example.andriatae.mydota2.Adapters.Recycle_Adapter;
 import com.example.andriatae.mydota2.Adapters.Recycle_Adapter_Heroes;
-import com.example.andriatae.mydota2.Application.myApplication;
-import com.example.andriatae.mydota2.Main_Activity.Main_Page_Dota;
 import com.example.andriatae.mydota2.Model.Hero_Stats;
-import com.example.andriatae.mydota2.Model.Match_Data;
 import com.example.andriatae.mydota2.Model.Player;
 import com.example.andriatae.mydota2.Model.Player_Container;
 import com.example.andriatae.mydota2.R;
-import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface;
+import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface_Activity;
 import com.example.andriatae.mydota2.View_Presenter.Presenter;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -58,20 +53,20 @@ import io.realm.RealmResults;
 
 
 
-public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment implements FragmentScripture {
+public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment implements Fragment_Interface_Activity.View {
 
-    Fragment_Interface myfragmentinterface;
+
+    @Inject
+    Fragment_Interface_Activity.Presenter presenter;
+
 
     Boolean runOnSecondFire=false;
 
+
+    //List of heroes for the 3rd vers
     List<Hero_Stats>strength;
     List<Hero_Stats>agility;
     List<Hero_Stats>intellignece;
-
-
-    //stores a reference to al players currently logged in
-
-    String[] playerTag;
 
     RecyclerView strengthr;
     RecyclerView agilityr;
@@ -80,6 +75,15 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
     Recycle_Adapter_Heroes adapterStr;
     Recycle_Adapter_Heroes adapterAgil;
     Recycle_Adapter_Heroes adapterSInteli;
+
+
+    //stores a reference to al players currently logged in
+
+    String[] playerTag;
+
+
+
+
 
     RecycleClickListener listener;
 
@@ -90,9 +94,7 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
 
 
     Activity main_activity;
-    View myview;
     myApplication myAplicationFrag;
-    Presenter myPresenter;
     private static final String ARG_POSITION = "position";
 
     @BindView(R.id.editText4)
@@ -145,30 +147,9 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
     }
 
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-
-        // This makes sure that the container activity has implemented
-        // the callback interface. If not, it throws an exception
-        try {
-            this.activityReference = activity;
-            myfragmentinterface = (Fragment_Interface) activity;
-
-            myfragmentinterface.setFragmentReferences(this,this.getArguments().getInt(ARG_POSITION));
-
-        } catch (ClassCastException e) {
-
-            throw new ClassCastException(activity.toString()
-
-                    + " must implement OnHeadlineSelectedListener");
-        }
-    }
 
 
     public static SuperAwesomeCardFragment newInstance(int position) {
-
-
 
         SuperAwesomeCardFragment f = new SuperAwesomeCardFragment();
 
@@ -179,10 +160,6 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
         f.setArguments(b);
 
         //Main_Page_Dota.setFragmentReferences(f,position);
-
-
-
-
 
         return f;
 
@@ -195,13 +172,9 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
         super.onCreate(savedInstanceState);
 
 
-        // myAplicationFrag=myApplication.get();
-
         position = getArguments().getInt(ARG_POSITION);
 
-
         System.out.println("Fragment created " + position);
-
 
         System.out.println("in on create");
 
@@ -217,11 +190,9 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
 
 
     @Override
-
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         switch (position) {
-
 
             //if on the first tab
             case 0:
@@ -230,12 +201,9 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
 
                 ButterKnife.bind(this, rootView);
 
-                //Method to add the fragment of users to the FrameLayout
+                updateViewMainpage();
 
-                addUserFragment();
-
-
-                myfragmentinterface.setFragmentPair(position);
+               // myfragmentinterface.setFragmentPair(position);
 
                 findidlink.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -256,17 +224,17 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
                     @Override
                     public void onClick(View view) {
 
-
                         String my32 = find_player_text.getText().toString();
-
 
                         int myid = Integer.valueOf(my32);
 
-
                         System.out.println(myid);
 
+                        Presenter.updateUser(myid);
 
-                        myfragmentinterface.updateFragmentPlayerTab(myid);
+                        //refresh current player fragment to se update made by presenter
+
+
 
 
 
@@ -302,8 +270,8 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
 
                                                       System.out.println("Hero button has been pressed ");
 
-                                                      List_Heroes_fragment myfrag=List_Heroes_fragment.newInstance(strength,agility,intellignece);
 
+                                                      updateViewHeroList();
                                                       switchOutFragment(myfrag);
 
 
@@ -313,27 +281,13 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
 
                                                   }
 
-                    private void switchOutFragment(List_Heroes_fragment myfrag) {
-
-                        System.out.println("in fragment switch statement inside hero");
-
-                        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-
-                        transaction.replace(R.id.My_Profile_Frag5, myfrag);
-
-                        System.out.println("shoul have changed now");
-
-                        transaction.addToBackStack(null);
-
-// Commit the transaction
-                        transaction.commit();
-
-                        refreshFrame();
 
 
 
 
-                    }
+
+
+
                 });
 
 
@@ -366,7 +320,6 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
 
 
                 getPlayers();
-
 
                 addMatchesRecycleFragment();
 
@@ -466,24 +419,7 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
 
                     }
 
-                    private void assignProTeamFragment(Pro_Team_Fragment myteamfrag) {
 
-
-
-                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-                       // transaction.detach(this);
-
-                        transaction.add(R.id.My_Pro_Frag, myteamfrag);
-
-
-                        transaction.commit();
-
-                        refreshFrame();
-
-
-
-                    }
                 });
 
 
@@ -504,6 +440,9 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
         return null;
     }
 
+    private void updateFragmentPlayerTab(int myid) {
+    }
+
 
     @Override
     public void initialiseherotab() {
@@ -515,6 +454,24 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
 
 
     }
+    private void switchOutFragmentListHeroes(List_Heroes_fragment myfrag) {
+
+        System.out.println("in fragment switch statement inside hero");
+
+        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+
+        transaction.replace(R.id.My_Profile_Frag5, myfrag);
+
+        System.out.println("shoul have changed now");
+
+        transaction.addToBackStack(null);
+
+// Commit the transaction
+        transaction.commit();
+
+        RefreshFrame();
+    }
+
 
     @Override
     public void searchDatabaseAndAddHeroesToArray(List<Hero_Stats>strength,List<Hero_Stats>agility,List<Hero_Stats>intellignece) {
@@ -551,23 +508,14 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
 
             }
 
-    @Override
-    public void changeRecycleAndRefresh(int player_id_from_name) {
-
-    }
 
 
-    private void addUserFragment() {
+
+    private void attachUserFragment() {
 
         List_Users_fragment myUsers = new List_Users_fragment();
         //Bundle c = new Bundle();
-
-
-
-
-
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
 // Replace whatever is in the fragment_container view with this fragment,
 // and add the transaction to the back stack if needed
         transaction.replace(R.id.fragment_container_user_list, myUsers);
@@ -576,24 +524,34 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
 // Commit the transaction
         transaction.commit();
 
+    }
+
+
+    private void attachProTeamFragment(Pro_Team_Fragment myteamfrag) {
+
+
+
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+        // transaction.detach(this);
+
+        transaction.add(R.id.My_Pro_Frag, myteamfrag);
+
+
+        transaction.commit();
+
+        RefreshFrame();
 
 
 
     }
-
     private ArrayList getPlayers() {
-
 
         //Sets a hashmap with name and id information of users
         // gets this information from activity which controls the logic of this being updated dynamically
-
-
-        this.profileIdPairing=myfragmentinterface.getUsers();
-
-
-
+        //TODO add to shared preferences
+        this.profileIdPairing=presenter.getUsers();
         this.mylist=new ArrayList<>(profileIdPairing.keySet());
-
 
         return mylist;
 
@@ -603,11 +561,6 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
 
         List_Matches_Fragment myMatches = new List_Matches_Fragment();
         //Bundle c = new Bundle();
-
-
-
-
-
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
 // Replace whatever is in the fragment_container view with this fragment,
@@ -618,16 +571,10 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
 // Commit the transaction
         transaction.commit();
 
-
-
-
-
-
     }
 
 
     public void updateFragmentPlayerInfo(String Player_name) {
-
 
             System.out.println("update view in fragment one");
 
@@ -643,13 +590,12 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
 
                 Player myplayer = m.getProfile();
 
-                if (myplayer.getPersonaname() == Player_name) {
+                if (myplayer.getPersonaname().equals(Player_name)) {
 
                    // player_info.setText(myplayer.toString());
 
                 }
             }
-
 
             realm.commitTransaction();
 
@@ -661,16 +607,9 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
 
             }
 
-
-
-
-
         }
 
-    public void onLinkClicked(View view)
-    {
 
-    }
 
 
     public Context getApplicationContext() {
@@ -679,43 +618,35 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
     }
 
 
-    public void refreshFrame() {
-
-
-        System.out.println("Frame Refreshing");
-
-        System.out.println("refreshing the frame");
-
-
-        Fragment currentFragment =this;
-
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-
-        fragmentTransaction.detach(currentFragment);
-        fragmentTransaction.attach(currentFragment);
-        fragmentTransaction.commit();
-
-    }
-
-public void switchUpTheFrame(){
+    public void RefreshFrame(){
 
     System.out.println("refreshing the frame");
-
-
     Fragment currentFragment =this;
-
     FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-
     fragmentTransaction.detach(currentFragment);
     fragmentTransaction.attach(currentFragment);
     fragmentTransaction.commit();
 
 
-
-
-
 }
-    public void initMatchValuesToSHow() {
+
+    @Override
+    public void updateViewMainpage() {
+        addUserFragment();
+
+    }
+
+    @Override
+    public void updateViewHeroList() {
+
+            List_Heroes_fragment myfragment=List_Heroes_fragment.newInstance(strength,agility,intellignece);
+            switchOutFragmentListHeroes(myfragment);
+        }
+
+    }
+
+    @Override
+    public void updateViewRecentMatches() {
 
     }
 }

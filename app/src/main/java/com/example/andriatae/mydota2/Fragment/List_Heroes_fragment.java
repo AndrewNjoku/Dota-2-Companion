@@ -15,28 +15,21 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.andriatae.mydota2.Adapters.Heroes_Spinner_Adapter;
-import com.example.andriatae.mydota2.Adapters.Matches_Spinner_Adapter;
 import com.example.andriatae.mydota2.Adapters.RecycleClickListener;
-import com.example.andriatae.mydota2.Adapters.Recycle_Adapter;
 import com.example.andriatae.mydota2.Adapters.Recycle_Adapter_Heroes;
 import com.example.andriatae.mydota2.Model.Hero_Stats;
 import com.example.andriatae.mydota2.Model.Player_Container;
 import com.example.andriatae.mydota2.R;
-import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface;
+import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface_Activity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.realm.Realm;
-import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
 
 /**
@@ -51,7 +44,7 @@ public class List_Heroes_fragment extends Fragment implements FragmentScripture{
 
     RealmResults<Player_Container>myPlayers;
 
-    Fragment_Interface myInterfacereference;
+    Fragment_Interface_Activity myInterfacereference;
 
     Recycle_Adapter_Heroes adapterRecycle;
     Activity myactivity;
@@ -115,7 +108,7 @@ public class List_Heroes_fragment extends Fragment implements FragmentScripture{
         // the callback interface. If not, it throws an exception
 
         try {
-            myInterfacereference = (Fragment_Interface) activity;
+            myInterfacereference = (Fragment_Interface_Activity) activity;
 
         } catch (ClassCastException e) {
 
@@ -145,18 +138,6 @@ public class List_Heroes_fragment extends Fragment implements FragmentScripture{
                 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
         @Override
 
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -165,9 +146,6 @@ public class List_Heroes_fragment extends Fragment implements FragmentScripture{
                     View rootView = inflater.inflate(R.layout.hero_frag, container, false);
 
             ArrayList<String>genres=new ArrayList<>(Arrays.asList("Strength","Agility","Intelligence"));
-
-
-
 
                     ButterKnife.bind(this, rootView);
 
@@ -182,11 +160,7 @@ public class List_Heroes_fragment extends Fragment implements FragmentScripture{
 
 
             myCoolSpinner.setAdapter(adapter10);
-
-
-
             myCoolSpinner.setSelection(myCoolSpinner.getSelectedItemPosition(), false);
-
             myCoolSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
             {
                 @Override
@@ -233,8 +207,6 @@ public class List_Heroes_fragment extends Fragment implements FragmentScripture{
 
                 }
             });
-
-
 
             //userButton=container.findViewById(R.id.MyImageButton);
 

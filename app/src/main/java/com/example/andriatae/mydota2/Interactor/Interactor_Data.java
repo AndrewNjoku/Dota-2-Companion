@@ -7,7 +7,7 @@ import com.example.andriatae.mydota2.Model.Match_Data;
 import com.example.andriatae.mydota2.Model.Player;
 import com.example.andriatae.mydota2.Model.Player_Container;
 import com.example.andriatae.mydota2.Model.Pro_Player;
-import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface;
+import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface_Activity;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ import io.realm.RealmResults;
     public class Interactor_Data implements Interactor_D_interface{
 
 
-    private final Fragment_Interface myfragmentinterface;
+    private final Fragment_Interface_Activity myfragmentinterface;
 
     myApplication myapplication;
     FragmentScripture myscript;
@@ -38,7 +38,7 @@ import io.realm.RealmResults;
 
 
 
-        public Interactor_Data(Fragment_Interface myfragmentinterface){
+        public Interactor_Data(Fragment_Interface_Activity myfragmentinterface){
 
             this.myfragmentinterface=myfragmentinterface;
 
@@ -88,7 +88,7 @@ import io.realm.RealmResults;
 
 
 
-        public void addToRealmPlayer(final Player_Container myplayertoadd, Fragment_Interface myfragmentinterface) {
+        public void addToRealmPlayer(final Player_Container myplayertoadd, Fragment_Interface_Activity myfragmentinterface) {
 
             // Object myobject=objects_to_add.
             // Class myclass=objects_to_add.getClass();
@@ -121,7 +121,7 @@ import io.realm.RealmResults;
         }
 
 //    @Override
-//    public void getPlayerObject(final String playerName, final Fragment_Interface myfragmentinterface) {
+//    public void getPlayerObject(final String playerName, final Fragment_Interface_Activity myfragmentinterface) {
 //
 //
 //            data1=Realm.getDefaultInstance();

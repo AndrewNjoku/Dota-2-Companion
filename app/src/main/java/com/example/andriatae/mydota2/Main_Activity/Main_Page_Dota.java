@@ -23,7 +23,7 @@ import com.example.andriatae.mydota2.Fragment.List_Users_fragment;
 import com.example.andriatae.mydota2.Fragment.ProfileFragment;
 import com.example.andriatae.mydota2.Fragment.SuperAwesomeCardFragment;
 import com.example.andriatae.mydota2.Model.Player_Container;
-import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface;
+import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface_Activity;
 import com.example.andriatae.mydota2.R;
 import com.example.andriatae.mydota2.View_Presenter.Presenter;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
@@ -35,7 +35,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class Main_Page_Dota extends AppCompatActivity implements Fragment_Interface {
+public class Main_Page_Dota extends AppCompatActivity implements Fragment_Interface_Activity {
 
 
     ProgressDialog dialog;

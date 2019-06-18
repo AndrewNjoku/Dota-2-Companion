@@ -17,10 +17,9 @@ import android.widget.Toast;
 import com.example.andriatae.mydota2.Adapters.ImageAdapter;
 import com.example.andriatae.mydota2.Application.myApplication;
 import com.example.andriatae.mydota2.Model.Hero_Stats;
-import com.example.andriatae.mydota2.Model.Match_Data;
 import com.example.andriatae.mydota2.Model.Pro_Player;
 import com.example.andriatae.mydota2.R;
-import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface;
+import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface_Activity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +40,7 @@ public class Pro_Team_Fragment extends Fragment implements FragmentScripture {
     List<Pro_Player> mypros;
     myApplication mainApp;
     Activity myactivity;
-    private Fragment_Interface myInterfacereference;
+    private Fragment_Interface_Activity myInterfacereference;
 
 
     public Pro_Team_Fragment() {
@@ -107,7 +106,7 @@ public class Pro_Team_Fragment extends Fragment implements FragmentScripture {
 
         this.myactivity = activity;
 
-        myInterfacereference = (Fragment_Interface) activity;
+        myInterfacereference = (Fragment_Interface_Activity) activity;
 
 
         // This makes sure that the container activity has implemented

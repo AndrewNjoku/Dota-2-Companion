@@ -5,7 +5,7 @@ import com.example.andriatae.mydota2.Model.Hero_Stats;
 import com.example.andriatae.mydota2.Model.Match_Data;
 import com.example.andriatae.mydota2.Model.Player_Container;
 import com.example.andriatae.mydota2.Model.Pro_Player;
-import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface;
+import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface_Activity;
 
 import java.util.List;
 
@@ -16,9 +16,9 @@ import java.util.List;
 public interface Interactor_D_interface {
 
 
-    void addToRealmPlayer(final Player_Container myplayertoadd, Fragment_Interface myfragmentinterface);
+    void addToRealmPlayer(final Player_Container myplayertoadd, Fragment_Interface_Activity myfragmentinterface);
 
-    //void getPlayerObject(String playerName, Fragment_Interface myfragmentinterface);
+    //void getPlayerObject(String playerName, Fragment_Interface_Activity myfragmentinterface);
 
     void addToRealmRecentMatches(List<Match_Data> match_data, FragmentScripture myScript);
 
