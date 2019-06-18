@@ -11,6 +11,7 @@ import com.example.andriatae.mydota2.Interactor.Interactor_API;
 import com.example.andriatae.mydota2.Interactor.Interactor_A_Interface;
 import com.example.andriatae.mydota2.Interactor.Interactor_D_interface;
 import com.example.andriatae.mydota2.Interactor.Interactor_Data;
+import com.example.andriatae.mydota2.Model.ApplicationModelContract;
 
 import java.util.Map;
 
@@ -20,7 +21,6 @@ import java.util.Map;
 
 public class Presenter implements Fragment_Interface_Activity.Presenter{
 
-    Fragment_Interface_Activity myfragmentinterface;
 
     Activity activity;
 
@@ -45,7 +45,7 @@ public class Presenter implements Fragment_Interface_Activity.Presenter{
 
 //View myView;
 
-    public Presenter(Fragment_Interface_Activity myActivity) {
+    public Presenter(ApplicationModelContract myModelInterface) {
 
         myfragmentinterface = (Fragment_Interface_Activity) myActivity;
 
@@ -191,6 +191,11 @@ public class Presenter implements Fragment_Interface_Activity.Presenter{
 
     @Override
     public void getHeroes() {
+
+    }
+
+    @Override
+    public void setFragmentPair(int position) {
 
     }
 }

@@ -31,8 +31,7 @@ public interface Fragment_Interface_Activity {
 
         void getHeroes();
 
-
-
+        void setFragmentPair(int position);
     }
 
     interface View {

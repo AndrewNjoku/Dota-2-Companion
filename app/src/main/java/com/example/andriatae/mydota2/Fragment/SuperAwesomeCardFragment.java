@@ -62,7 +62,6 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
 
     Boolean runOnSecondFire=false;
 
-
     //List of heroes for the 3rd vers
     List<Hero_Stats>strength;
     List<Hero_Stats>agility;
@@ -81,10 +80,6 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
 
     String[] playerTag;
 
-
-
-
-
     RecycleClickListener listener;
 
 
@@ -94,7 +89,9 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
 
 
     Activity main_activity;
+
     myApplication myAplicationFrag;
+
     private static final String ARG_POSITION = "position";
 
     @BindView(R.id.editText4)
@@ -153,6 +150,9 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
 
         SuperAwesomeCardFragment f = new SuperAwesomeCardFragment();
 
+
+        // Create bundle and add the position int to distinguish which fragment this will be for
+
         Bundle b = new Bundle();
 
         b.putInt(ARG_POSITION, position);
@@ -170,7 +170,6 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
 
         position = getArguments().getInt(ARG_POSITION);
 
@@ -203,7 +202,7 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
 
                 updateViewMainpage();
 
-               // myfragmentinterface.setFragmentPair(position);
+               presenter.setFragmentPair(position);
 
                 findidlink.setOnClickListener(new View.OnClickListener() {
                     @Override
