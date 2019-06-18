@@ -45,6 +45,9 @@ public class Presenter implements Fragment_Interface_Activity.Presenter{
 
 //View myView;
 
+
+    //Testing
+
     public Presenter(ApplicationModelContract myModelInterface) {
 
         myfragmentinterface = (Fragment_Interface_Activity) myActivity;
