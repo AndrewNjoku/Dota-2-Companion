@@ -61,10 +61,6 @@ public class Interactor_API implements Interactor_A_Interface {
 
     }
 
-
-
-
-
 public static int setPrimaryKey(){
 
        id++;

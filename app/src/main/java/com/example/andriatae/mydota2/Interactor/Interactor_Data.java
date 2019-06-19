@@ -38,7 +38,6 @@ import io.realm.RealmResults;
         public Interactor_Data(Fragment_Interface_Activity.View myView){
 
             this.myView=myView;
-
             myapplication=myApplication.get();
 
                    // RealmConfiguration myConfig=myapplication.getRealm("Heroes");
@@ -89,15 +88,12 @@ import io.realm.RealmResults;
     }
 
     @Override
-    public void addToRealmHero(final List<Hero_Stats> mystats) {
+    public void addToRealmHero(final List<Hero_Stats> mystats, final Fragment_Interface_Activity.View myView) {
 
         System.out.println("adding heroes to reaLM");
 
 
-        myscript=myfragmentinterface.getHeroFragment();
-
-
-            RealmConfiguration myheroconfig=myapplication.getRealm("Hero");
+        RealmConfiguration myheroconfig=myapplication.getRealm("Hero");
 
 
         Realm realm=Realm.getInstance(myheroconfig);
@@ -110,7 +106,7 @@ import io.realm.RealmResults;
 
                 realm.copyToRealm(mystats);
 
-                myscript.initialiseherotab();
+                myView.updateViewHeroList();
 
             }
         });

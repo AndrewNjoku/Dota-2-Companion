@@ -331,10 +331,6 @@ public class List_Heroes_fragment extends Fragment implements FragmentScripture{
 
     }
 
-    @Override
-    public void searchDatabaseAndAddHeroesToArray(List<Hero_Stats> strength, List<Hero_Stats> agility, List<Hero_Stats> intellignece) {
-
-    }
 
     @Override
     public void changeRecycleAndRefresh(int player_id_from_name) {

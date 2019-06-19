@@ -43,10 +43,6 @@ public class Presenter implements Fragment_Interface_Activity.Presenter{
 
     }
 
-    public FragmentScripture getMyProfileFrag() {
-        return myProfileFrag;
-    }
-
     public void setMyProfileFrag(FragmentScripture myProfileFrag) {
         this.myProfileFrag = myProfileFrag;
     }
