@@ -15,5 +15,4 @@ public interface ActivityComponent{
 
         void inject(SuperAwesomeCardFragment mainFragment);
 
-
         }

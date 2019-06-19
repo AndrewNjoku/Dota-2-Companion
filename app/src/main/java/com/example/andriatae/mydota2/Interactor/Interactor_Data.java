@@ -23,126 +23,31 @@ import io.realm.RealmResults;
     public class Interactor_Data implements Interactor_D_interface{
 
 
-    private final Fragment_Interface_Activity myfragmentinterface;
+        //view callback for updating view
+    private final Fragment_Interface_Activity.View myView;
 
     myApplication myapplication;
     FragmentScripture myscript;
 
         Player myPlayer;
 
-
-
-
         Realm data1;
         Realm data2;
 
 
+        public Interactor_Data(Fragment_Interface_Activity.View myView){
 
-        public Interactor_Data(Fragment_Interface_Activity myfragmentinterface){
-
-            this.myfragmentinterface=myfragmentinterface;
+            this.myView=myView;
 
             myapplication=myApplication.get();
 
-
-
-
-
-
-
                    // RealmConfiguration myConfig=myapplication.getRealm("Heroes");
-
-
-
-
-
-
-
-
-
         }
 
-
-        // public void addToRealm()
-
-
-
 //
-//        public <T> void addToRealm(final Collection<T> objects_to_add, View myView) {
-//
-//            System.out.println("inside database method yay");
-//
-//
-//            Type sooper = getClass().getGenericSuperclass();
-//            Type t = ((ParameterizedType) sooper).getActualTypeArguments()[0];
-//
-//
-//           // Player myPlayer = objects_to_add.
-//
-//            for (Object m : objects_to_add) {
-//
-//                m.toString();
-//
-//            }
-//        }
-
-
-
-        public void addToRealmPlayer(final Player_Container myplayertoadd, Fragment_Interface_Activity myfragmentinterface) {
-
-            // Object myobject=objects_to_add.
-            // Class myclass=objects_to_add.getClass();
-            data1=Realm.getDefaultInstance();
-
-            String player_name;
-
-
-
-            data1.executeTransactionAsync(new Realm.Transaction() {
-                @Override
-                public void execute(Realm realm) {
-
-                    realm.copyToRealm(myplayertoadd);
-
-                    System.out.println("copied to realm"+"is realm empty?"+realm.isEmpty());
-
-                }
-            });
-
-
-            //player_name=myplayertoadd.getProfile().getPersonaname();
-
-
-            //callback to update the recycleview of players
-
-           // myfragmentinterface.showProfileinfo();
-
-
-        }
-
-//    @Override
-//    public void getPlayerObject(final String playerName, final Fragment_Interface_Activity myfragmentinterface) {
-//
-//
-//            data1=Realm.getDefaultInstance();
-//
-//            data1.executeTransaction(new Realm.Transaction() {
-//                @Override
-//                public void execute(Realm realm) {
-//
-//
-//                   Player_Container myPlayer=realm.where(Player_Container.class).equalTo("personaname",playerName).findFirstAsync();
-//
-//
-//                   myfragmentinterface.
-//
-//                }
-//            });
-//
-//    }
 
     @Override
-    public void addToRealmRecentMatches(final List<Match_Data> match_data, final FragmentScripture myScript) {
+    public void addToRealmRecentMatches(final List<Match_Data> match_data, final Fragment_Interface_Activity.View myView) {
 
         RealmConfiguration getMatchesConfig=myapplication.getRealm("Match");
 
@@ -160,9 +65,7 @@ import io.realm.RealmResults;
                     System.out.println("adding these matches to database for user:"+m.getMatchId());
 
                 }
-
-
-                myScript.initMatchValuesToSHow();
+                myView.initMatchValuesToShow();
 
 
 
@@ -187,8 +90,6 @@ import io.realm.RealmResults;
 
     @Override
     public void addToRealmHero(final List<Hero_Stats> mystats) {
-
-
 
         System.out.println("adding heroes to reaLM");
 
@@ -303,5 +204,35 @@ import io.realm.RealmResults;
     }
 
 
+    @Override
+    public void addToRealmPlayer(Player_Container myplayertoadd, Fragment_Interface_Activity.View myScript) {
+
+        ct myobject=objects_to_add.
+        // Class myclass=objects_to_add.getClass();
+        data1=Realm.getDefaultInstance();
+        String player_name;
+        data1.executeTransactionAsync(new Realm.Transaction() {
+@Override
+public void execute(Realm realm) {
+
+        realm.copyToRealm(myplayertoadd);
+
+        System.out.println("copied to realm"+"is realm empty?"+realm.isEmpty());
+    }
+
+    @Override
+    public void addToRealmRecentMatches(List<Match_Data> match_data, Fragment_Interface_Activity.View myScript) {
+
+    }
+
+    @Override
+    public void addToRealmHero(List<Hero_Stats> mystats, Fragment_Interface_Activity.View myScript) {
+
+    }
+
+    @Override
+    public void addToRealmProPlayer(List<Pro_Player> body, Fragment_Interface_Activity.View myScript) {
+
+    }
 }
 

@@ -7,8 +7,10 @@ import com.example.andriatae.mydota2.Fragment.FragmentScripture;
 import com.example.andriatae.mydota2.Fragment.List_Matches_Fragment;
 import com.example.andriatae.mydota2.Fragment.ProfileFragment;
 import com.example.andriatae.mydota2.Fragment.SuperAwesomeCardFragment;
+import com.example.andriatae.mydota2.Model.Hero_Stats;
 import com.example.andriatae.mydota2.Model.Player_Container;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,6 +34,9 @@ public interface Fragment_Interface_Activity {
         void getHeroes();
 
         void setFragmentPair(int position);
+
+        void searchDatabaseAndAddHeroesToArray(List<Hero_Stats> strength, List<Hero_Stats>agility, List<Hero_Stats>intellignece);
+
     }
 
     interface View {
@@ -44,6 +49,8 @@ public interface Fragment_Interface_Activity {
         void updateViewHeroList();
 
         void updateViewRecentMatches();
+
+        void initMatchValuesToShow();
 
 
         /*

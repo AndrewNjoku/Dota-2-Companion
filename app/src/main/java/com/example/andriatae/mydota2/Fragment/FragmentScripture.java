@@ -13,12 +13,11 @@ public interface FragmentScripture {
     // This interface will define shared methods for All of my fragments
 
 
-    void refreshFrame();
+
 
     void initMatchValuesToSHow();
 
     //THis hsould be handled by presenter
-    void searchDatabaseAndAddHeroesToArray(List<Hero_Stats> strength, List<Hero_Stats>agility, List<Hero_Stats>intellignece);
 
     void changeRecycleAndRefresh(int player_id_from_name);
 

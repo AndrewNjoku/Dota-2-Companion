@@ -21,65 +21,27 @@ import java.util.Map;
 
 public class Presenter implements Fragment_Interface_Activity.Presenter{
 
-
-    Activity activity;
-
-
     //Fragment instances for each tab
 
+    Fragment_Interface_Activity.View view;
 
-    FragmentScripture myProfileFrag;
-    FragmentScripture myHeroFrag;
-    FragmentScripture myMatchFrag;
+    private FragmentScripture myProfileFrag;
+    private FragmentScripture myHeroFrag;
+    private FragmentScripture myMatchFrag;
 
-//there will be a presenter instance for each fragment this is to distinguish which one
-
-    int id;
-
-    String initialAction;
-
-    Fragment myMainFrag;
-
-    Interactor_A_Interface apiWorker;
-    Interactor_D_interface dataWorker;
-
-//View myView;
-
+    //interactors
+    private Interactor_A_Interface apiWorker;
+    private Interactor_D_interface dataWorker;
 
     //Testing
 
-    public Presenter(ApplicationModelContract myModelInterface) {
-
-        myfragmentinterface = (Fragment_Interface_Activity) myActivity;
-
-
+    public Presenter(Interactor_A_Interface apiWorker,Interactor_D_interface dataWorker ) {
         //TODO these are application scope modules which need to be accessed as such
 
-        apiWorker = new Interactor_API();
-
-        dataWorker = new Interactor_Data(myfragmentinterface);
+        this.apiWorker = apiWorker;
+        this.dataWorker = dataWorker;
 
     }
-
-//constructor for an action to be performed on initial load
-//public Presenter(String initialAction){
-//
-//    this.id=id;
-//
-//    this.initialAction=initialAction;
-//
-//    //this.
-//
-//    apiWorker=new Interactor_API(id,initialAction);
-//
-//
-//    dataWorker=new Interactor_Data();
-//}
-
-
-//    public Activity getMainactivity() {
-//        return mainactivity;
-//    }
 
     public FragmentScripture getMyProfileFrag() {
         return myProfileFrag;
@@ -107,18 +69,11 @@ public class Presenter implements Fragment_Interface_Activity.Presenter{
 
     }
 
-//  public void setPlayerInfo(String playerName)
-//  {
-//
-//    dataWorker.getPlayerObject(playerName,myfragmentinterface);
-//
-//  }
 
     public void updateFrame(SuperAwesomeCardFragment myFragment) {
 
 
     }
-
 
     public void swapMainFragPlayerCard(ProfileFragment myFragToSwapTo) {
 
@@ -128,29 +83,17 @@ public class Presenter implements Fragment_Interface_Activity.Presenter{
 
     public void getMatchDataPutInRealm(int account_id, FragmentScripture myScript) {
 
-        // FragmentScripture myScript=
-
-        //going to have a callback to a fragment later on thats why we need the interface
-
-        //apiWorker.initialiseMatchesApi();
-
         apiWorker.MatchesToObjectFromAPI(account_id, dataWorker, myScript);
-
 
     }
 
     public void getHeroPutInRealm() {
-
-        //apiWorker.initialiseHeroApi();
-
         apiWorker.HeroToObjectFromApi(dataWorker);
 
     }
 
     public void getProPutInRealm() {
-
         apiWorker.ProToObjectFromApi(dataWorker);
-
     }
 
 
@@ -171,9 +114,7 @@ public class Presenter implements Fragment_Interface_Activity.Presenter{
 
     public void setMyMatchesFrag(List_Matches_Fragment list_matches_fragment) {
 
-
         this.myMatchFrag = list_matches_fragment;
-
 
     }
 

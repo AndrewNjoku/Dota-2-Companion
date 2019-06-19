@@ -16,7 +16,6 @@ public interface Interactor_A_Interface {
 
     void MatchesToObjectFromAPI(int account_id, Interactor_D_interface dataWorker,FragmentScripture fragscrip);
 
-
     void HeroToObjectFromApi(Interactor_D_interface dataWorker);
 
 

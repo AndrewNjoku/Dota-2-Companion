@@ -16,17 +16,19 @@ import java.util.List;
 public interface Interactor_D_interface {
 
 
-    void addToRealmPlayer(final Player_Container myplayertoadd, Fragment_Interface_Activity myfragmentinterface);
+    //We want to update our view with the new data stored in our device database (Realm Caching)
+    //This will involve inflating our adapters with the new data and re-attaching our fragments in order
+    //to update the state
+
+    void addToRealmPlayer(final Player_Container myplayertoadd, Fragment_Interface_Activity.View myScript);
 
     //void getPlayerObject(String playerName, Fragment_Interface_Activity myfragmentinterface);
+    void addToRealmRecentMatches(List<Match_Data> match_data, Fragment_Interface_Activity.View myScript);
 
-    void addToRealmRecentMatches(List<Match_Data> match_data, FragmentScripture myScript);
+    void addToRealmHero(List<Hero_Stats> mystats, Fragment_Interface_Activity.View myScript);
 
-    void addToRealmHero(List<Hero_Stats> mystats);
+    void addToRealmProPlayer(List<Pro_Player> body, Fragment_Interface_Activity.View myScript);
 
 
-    void addToRealmProPlayer(List<Pro_Player> body);
-
-    void getHeroPutInFragment(FragmentScripture myScript);
 
 }

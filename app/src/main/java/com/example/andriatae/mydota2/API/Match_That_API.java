@@ -17,7 +17,7 @@ public interface Match_That_API {
 
     @GET("players/{account_id}/recentMatches")
 
-    Call<List<Match_Data>>matchDataGetThatPronto(@Path("account_id") int addThatID);
+    Observable<List<Match_Data>>matchDataGetThatPronto(@Path("account_id") int addThatID);
 
 
 }

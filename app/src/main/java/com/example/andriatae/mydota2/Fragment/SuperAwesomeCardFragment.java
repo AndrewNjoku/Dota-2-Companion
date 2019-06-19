@@ -648,6 +648,11 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
     public void updateViewRecentMatches() {
 
     }
+
+    @Override
+    public void initMatchValuesToShow() {
+
+    }
 }
 
 
