@@ -1,6 +1,4 @@
-# Dota 2 Companion
-
-# About this project 
+# Dota 2 Companion 
 
 API used: Opendota API : https://docs.opendota.com/
 
