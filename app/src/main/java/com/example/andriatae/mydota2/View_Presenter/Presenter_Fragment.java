@@ -1,17 +1,11 @@
 package com.example.andriatae.mydota2.View_Presenter;
 
-import android.app.Activity;
-import android.support.v4.app.Fragment;
-
-import com.example.andriatae.mydota2.Fragment.FragmentScripture;
-import com.example.andriatae.mydota2.Fragment.List_Matches_Fragment;
-import com.example.andriatae.mydota2.Fragment.ProfileFragment;
+import com.example.andriatae.mydota2.Fragment.SpecialisedFragmentScripture;
+import com.example.andriatae.mydota2.Fragment.List_Matches_Specialised_Fragment;
+import com.example.andriatae.mydota2.Fragment.ProfileSpecialisedFragment;
 import com.example.andriatae.mydota2.Fragment.SuperAwesomeCardFragment;
-import com.example.andriatae.mydota2.Interactor.Interactor_API;
 import com.example.andriatae.mydota2.Interactor.Interactor_A_Interface;
 import com.example.andriatae.mydota2.Interactor.Interactor_D_interface;
-import com.example.andriatae.mydota2.Interactor.Interactor_Data;
-import com.example.andriatae.mydota2.Model.ApplicationModelContract;
 
 import java.util.Map;
 
@@ -19,15 +13,15 @@ import java.util.Map;
  * Created by Andria TAE on 13/03/2018.
  */
 
-public class Presenter implements Fragment_Interface_Activity.Presenter{
+public class Presenter_Fragment implements Fragment_Interface.Presenter{
 
     //Fragment instances for each tab
 
-    Fragment_Interface_Activity.View view;
+    Fragment_Interface.View view;
 
-    private FragmentScripture myProfileFrag;
-    private FragmentScripture myHeroFrag;
-    private FragmentScripture myMatchFrag;
+    private SpecialisedFragmentScripture myProfileFrag;
+    private SpecialisedFragmentScripture myHeroFrag;
+    private SpecialisedFragmentScripture myMatchFrag;
 
     //interactors
     private Interactor_A_Interface apiWorker;
@@ -35,7 +29,7 @@ public class Presenter implements Fragment_Interface_Activity.Presenter{
 
     //Testing
 
-    public Presenter(Interactor_A_Interface apiWorker,Interactor_D_interface dataWorker ) {
+    public Presenter_Fragment(Interactor_A_Interface apiWorker, Interactor_D_interface dataWorker ) {
         //TODO these are application scope modules which need to be accessed as such
 
         this.apiWorker = apiWorker;
@@ -43,15 +37,15 @@ public class Presenter implements Fragment_Interface_Activity.Presenter{
 
     }
 
-    public void setMyProfileFrag(FragmentScripture myProfileFrag) {
+    public void setMyProfileFrag(SpecialisedFragmentScripture myProfileFrag) {
         this.myProfileFrag = myProfileFrag;
     }
 
-    public FragmentScripture getMyHeroFrag() {
+    public SpecialisedFragmentScripture getMyHeroFrag() {
         return myHeroFrag;
     }
 
-    public void setMyHeroFrag(FragmentScripture myHeroFrag) {
+    public void setMyHeroFrag(SpecialisedFragmentScripture myHeroFrag) {
         this.myHeroFrag = myHeroFrag;
     }
 
@@ -71,15 +65,15 @@ public class Presenter implements Fragment_Interface_Activity.Presenter{
 
     }
 
-    public void swapMainFragPlayerCard(ProfileFragment myFragToSwapTo) {
+    public void swapMainFragPlayerCard(ProfileSpecialisedFragment myFragToSwapTo) {
 
 
     }
 
 
-    public void getMatchDataPutInRealm(int account_id, FragmentScripture myScript) {
+    public void getMatchDataPutInRealm(int account_id) {
 
-        apiWorker.MatchesToObjectFromAPI(account_id, dataWorker, myScript);
+        apiWorker.MatchesToObjectFromAPI(account_id, dataWorker);
 
     }
 
@@ -108,7 +102,7 @@ public class Presenter implements Fragment_Interface_Activity.Presenter{
 
     }
 
-    public void setMyMatchesFrag(List_Matches_Fragment list_matches_fragment) {
+    public void setMyMatchesFrag(List_Matches_Specialised_Fragment list_matches_fragment) {
 
         this.myMatchFrag = list_matches_fragment;
 

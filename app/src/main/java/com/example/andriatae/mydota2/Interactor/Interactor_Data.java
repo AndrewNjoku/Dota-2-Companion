@@ -1,13 +1,11 @@
 package com.example.andriatae.mydota2.Interactor;
 
 import com.example.andriatae.mydota2.Application.myApplication;
-import com.example.andriatae.mydota2.Fragment.FragmentScripture;
 import com.example.andriatae.mydota2.Model.Hero_Stats;
 import com.example.andriatae.mydota2.Model.Match_Data;
-import com.example.andriatae.mydota2.Model.Player;
 import com.example.andriatae.mydota2.Model.Player_Container;
 import com.example.andriatae.mydota2.Model.Pro_Player;
-import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface_Activity;
+import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface;
 
 import java.util.List;
 
@@ -19,23 +17,18 @@ import io.realm.RealmResults;
  * Created by Andria TAE on 14/03/2018.
  */
 
-
     public class Interactor_Data implements Interactor_D_interface{
 
-
         //view callback for updating view
-    private final Fragment_Interface_Activity.View myView;
+    private final Fragment_Interface.View myView;
 
     myApplication myapplication;
-    FragmentScripture myscript;
-
-        Player myPlayer;
 
         Realm data1;
         Realm data2;
 
 
-        public Interactor_Data(Fragment_Interface_Activity.View myView){
+        public Interactor_Data(Fragment_Interface.View myView){
 
             this.myView=myView;
             myapplication=myApplication.get();
@@ -46,7 +39,7 @@ import io.realm.RealmResults;
 //
 
     @Override
-    public void addToRealmRecentMatches(final List<Match_Data> match_data, final Fragment_Interface_Activity.View myView) {
+    public void addToRealmRecentMatches(final List<Match_Data> match_data) {
 
         RealmConfiguration getMatchesConfig=myapplication.getRealm("Match");
 
@@ -67,28 +60,13 @@ import io.realm.RealmResults;
                 myView.initMatchValuesToShow();
 
 
-
-
-                //myfragmentinterface.initMatchValuesToSHow();
-
-               // myfragmentinterface.showProfileCardFragment();
-
             }
         });
-
-
-        //player_name=myplayertoadd.getProfile().getPersonaname();
-
-
-        //callback to update the recycleview of players
-
-        // myfragmentinterface.showProfileinfo();
-
 
     }
 
     @Override
-    public void addToRealmHero(final List<Hero_Stats> mystats, final Fragment_Interface_Activity.View myView) {
+    public void addToRealmHero(final List<Hero_Stats> mystats) {
 
         System.out.println("adding heroes to reaLM");
 
@@ -103,36 +81,20 @@ import io.realm.RealmResults;
             @Override
             public void execute(Realm realm) {
 
-
                 realm.copyToRealm(mystats);
 
                 myView.updateViewHeroList();
-
             }
         });
-
-
-
-
-
-
-
-
-
 
     }
 
     @Override
-    public void getHeroPutInFragment(final FragmentScripture myScript) {
-
-
-
+    public void getHeroesFromRealmUpdateView() {
 
         RealmConfiguration myheroconfig=myapplication.getRealm("Hero");
 
-
         Realm realm=Realm.getInstance(myheroconfig);
-
 
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
@@ -151,14 +113,12 @@ import io.realm.RealmResults;
                 List<Hero_Stats>intelliListt=realm.copyFromRealm(mystr);
 
 
-
-
-                if ((mystr.isLoaded())||(myagi.isLoaded())||myinti.isLoaded())
+                if ((mystr.isLoaded())&&(myagi.isLoaded())&&myinti.isLoaded())
                 {
 
-                    System.out.println("all three hero lists are loaded in database interactor pushing to fragment via Callback");
+                    System.out.println("all three hero lists are loaded in database interactor pushing to fragment via view Callback");
 
-                    myscript.searchDatabaseAndAddHeroesToArray(strengthListt,agilListt,intelliListt);
+                    myView.loadHeroesToArrayFromRealm(strengthListt,agilListt,intelliListt);
 
                 }
                 else{
@@ -170,18 +130,12 @@ import io.realm.RealmResults;
             }
         });
 
-
-
-
-
     }
 
     @Override
     public void addToRealmProPlayer(final List<Pro_Player> body) {
 
-
         RealmConfiguration myproconfig=myapplication.getRealm("Pro");
-
         Realm realm=Realm.getInstance(myproconfig);
 
         realm.executeTransactionAsync(new Realm.Transaction() {
@@ -199,36 +153,22 @@ import io.realm.RealmResults;
 
     }
 
-
     @Override
-    public void addToRealmPlayer(Player_Container myplayertoadd, Fragment_Interface_Activity.View myScript) {
+    public void addToRealmPlayer(final Player_Container myplayertoadd) {
 
-        ct myobject=objects_to_add.
         // Class myclass=objects_to_add.getClass();
-        data1=Realm.getDefaultInstance();
+        data1 = Realm.getDefaultInstance();
         String player_name;
         data1.executeTransactionAsync(new Realm.Transaction() {
-@Override
-public void execute(Realm realm) {
+            @Override
+            public void execute(Realm realm) {
 
-        realm.copyToRealm(myplayertoadd);
+                realm.copyToRealm(myplayertoadd);
 
-        System.out.println("copied to realm"+"is realm empty?"+realm.isEmpty());
-    }
+                System.out.println("copied to realm" + "is realm empty?" + realm.isEmpty());
+            }
 
-    @Override
-    public void addToRealmRecentMatches(List<Match_Data> match_data, Fragment_Interface_Activity.View myScript) {
 
-    }
-
-    @Override
-    public void addToRealmHero(List<Hero_Stats> mystats, Fragment_Interface_Activity.View myScript) {
+        });
 
     }
-
-    @Override
-    public void addToRealmProPlayer(List<Pro_Player> body, Fragment_Interface_Activity.View myScript) {
-
-    }
-}
-

@@ -8,7 +8,7 @@ import java.util.List;
  * Created by Andria TAE on 18/03/2018.
  */
 
-public interface FragmentScripture {
+public interface SpecialisedFragmentScripture {
 
     // This interface will define shared methods for All of my fragments
 

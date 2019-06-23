@@ -21,7 +21,7 @@ import com.example.andriatae.mydota2.Model.Match_Data;
 import com.example.andriatae.mydota2.Model.Player_Container;
 //import com.example.andriatae.mydota2.R;
 import com.example.andriatae.mydota2.R;
-import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface_Activity;
+import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -36,14 +36,14 @@ import io.realm.RealmResults;
  * Created by Andria TAE on 17/03/2018.
  */
 
-public class ProfileFragment extends Fragment implements FragmentScripture {
+public class ProfileSpecialisedFragment extends Fragment implements SpecialisedFragmentScripture {
 
 
 //current player container, defaults empty player loaded in.
     Player_Container myPlayerCardHolder;
 
     //
-    Fragment_Interface_Activity myInterfacereference;
+    Fragment_Interface myInterfacereference;
 
     RealmResults<Match_Data>myData;
 
@@ -106,7 +106,7 @@ TextView userAK;
 
 
 
-        public ProfileFragment() {
+        public ProfileSpecialisedFragment() {
 
             mainApp=myApplication.get();
 
@@ -195,9 +195,9 @@ TextView userAK;
             });
     }
 
-    public static ProfileFragment newInstance(int profileId) {
+    public static ProfileSpecialisedFragment newInstance(int profileId) {
 
-        ProfileFragment thisUser = new ProfileFragment();
+        ProfileSpecialisedFragment thisUser = new ProfileSpecialisedFragment();
 
         Bundle myTreasureChest = new Bundle();
 
@@ -217,7 +217,7 @@ TextView userAK;
             this.myactivity=activity;
 
             //TODO deprecated as is, need to pass reference to my activities interface another way
-            myInterfacereference = (Fragment_Interface_Activity) activity;
+            myInterfacereference = (Fragment_Interface) activity;
 
 
             // This makes sure that the container activity has implemented

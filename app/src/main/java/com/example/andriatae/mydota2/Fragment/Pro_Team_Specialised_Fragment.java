@@ -19,7 +19,7 @@ import com.example.andriatae.mydota2.Application.myApplication;
 import com.example.andriatae.mydota2.Model.Hero_Stats;
 import com.example.andriatae.mydota2.Model.Pro_Player;
 import com.example.andriatae.mydota2.R;
-import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface_Activity;
+import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,15 +35,15 @@ import io.realm.RealmResults;
  * Created by Andria TAE on 17/03/2018.
  */
 
-public class Pro_Team_Fragment extends Fragment implements FragmentScripture {
+public class Pro_Team_Specialised_Fragment extends Fragment implements SpecialisedFragmentScripture {
 
     List<Pro_Player> mypros;
     myApplication mainApp;
     Activity myactivity;
-    private Fragment_Interface_Activity myInterfacereference;
+    private Fragment_Interface myInterfacereference;
 
 
-    public Pro_Team_Fragment() {
+    public Pro_Team_Specialised_Fragment() {
 
         mainApp = myApplication.get();
 
@@ -90,9 +90,9 @@ public class Pro_Team_Fragment extends Fragment implements FragmentScripture {
     }
 
 
-    public static Pro_Team_Fragment newInstance() {
+    public static Pro_Team_Specialised_Fragment newInstance() {
 
-        Pro_Team_Fragment thisUser = new Pro_Team_Fragment();
+        Pro_Team_Specialised_Fragment thisUser = new Pro_Team_Specialised_Fragment();
 
 
         return thisUser;
@@ -106,7 +106,7 @@ public class Pro_Team_Fragment extends Fragment implements FragmentScripture {
 
         this.myactivity = activity;
 
-        myInterfacereference = (Fragment_Interface_Activity) activity;
+        myInterfacereference = (Fragment_Interface) activity;
 
 
         // This makes sure that the container activity has implemented

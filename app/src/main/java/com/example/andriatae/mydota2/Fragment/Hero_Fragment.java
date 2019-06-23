@@ -17,7 +17,7 @@
 //import com.example.andriatae.mydota2.Adapters.Recycle_Adapter_Heroes;
 //import com.example.andriatae.mydota2.Application.myApplication;
 //import com.example.andriatae.mydota2.R;
-//import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface_Activity;
+//import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface;
 //
 //import butterknife.BindView;
 //import butterknife.ButterKnife;
@@ -34,7 +34,7 @@
 // * Created by Andria TAE on 17/03/2018.
 // */
 //
-//public class Hero_Fragment extends Fragment implements FragmentScripture {
+//public class Hero_Fragment extends Fragment implements SpecialisedFragmentScripture {
 //
 //
 //
@@ -46,7 +46,7 @@
 //
 //   myApplication mainApp;
 //   Activity myActivity;
-//   Fragment_Interface_Activity myScript;
+//   Fragment_Interface myScript;
 //
 //   Recycle_Adapter_Heroes adapter;
 //
@@ -95,7 +95,7 @@
 //        super.onAttach(activity);
 //
 //        this.myActivity=activity;
-//        myScript= (Fragment_Interface_Activity) activity;
+//        myScript= (Fragment_Interface) activity;
 //
 //
 //

@@ -3,7 +3,8 @@ package com.example.andriatae.mydota2.Application;
 
 import android.app.Application;
 
-import com.example.andriatae.mydota2.Dagger.ActivityComponent;
+import com.example.andriatae.mydota2.Dagger.ActivityDependencyComponent;
+import com.example.andriatae.mydota2.Dagger.FragmentDependencyComponent;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -15,22 +16,7 @@ public class myApplication extends Application {
     // Called when the application is starting, before any other application objects have been created.
     // Overriding this method is totally optional!
 
-
-    private AppInjector appComponent;
-    //One activity , many fragments means it will be neccessary to pass activity module reference around to share
-    // the singletons
-    private ActivityComponent ActivityComponent;
-
-    //...
-
-    public ActivityComponent createUserComponent(User user) {
-        userComponent = appComponent.plus(new UserModule(user));
-        return userComponent;
-    }
-
-    public void releaseUserComponent() {
-        userComponent = null;
-    }
+private ActivityDependencyComponent myActivityComponent;
 
 
     public static myApplication INSTANCE;
@@ -53,22 +39,15 @@ public class myApplication extends Application {
     }
 
 
+
     @Override
     public void onCreate() {
         super.onCreate();
-
-        // create database ROOM
-        //    database = Room.databaseBuilder(getApplicationContext(), appDatabase.class, DATABASE_NAME)
-
-
-        //Room provides an abstraction layer to ease SQLite migrations in the form of the Migration class.
-        // A Migration class defines the actions that should be performed when migrating from
-        // one specific version to another.
-
-        //     .addMigrations(appDatabase.MIGRATION_1_2)
-        //      .build();
-
         INSTANCE = this;
+
+
+        //These are singletons so we build here to ensure we are on a global app scope for interacting with these
+        myActivityComponent = DaggerDependencyComponent.builder().build();
         // Required initialization logic here!
 
 
@@ -106,7 +85,6 @@ public class myApplication extends Application {
     }
 
     public RealmConfiguration getRealm(String name){
-
         switch (name) {
 
             case "Player":
@@ -128,6 +106,12 @@ public class myApplication extends Application {
         }
 
         return null;
+
+    }
+
+    public ActivityDependencyComponent getActivityComponent (){
+
+
 
     }
 

@@ -22,7 +22,7 @@ import com.example.andriatae.mydota2.Adapters.Recycle_Adapter_Heroes;
 import com.example.andriatae.mydota2.Model.Hero_Stats;
 import com.example.andriatae.mydota2.Model.Player_Container;
 import com.example.andriatae.mydota2.R;
-import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface_Activity;
+import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,7 +36,7 @@ import io.realm.RealmResults;
  * Created by Andria TAE on 15/03/2018.
  */
 
-public class List_Heroes_fragment extends Fragment implements FragmentScripture{
+public class List_Heroes_Specialised_fragment extends Fragment implements SpecialisedFragmentScripture {
 
 
     List<Hero_Stats>list;
@@ -44,7 +44,7 @@ public class List_Heroes_fragment extends Fragment implements FragmentScripture{
 
     RealmResults<Player_Container>myPlayers;
 
-    Fragment_Interface_Activity myInterfacereference;
+    Fragment_Interface myInterfacereference;
 
     Recycle_Adapter_Heroes adapterRecycle;
     Activity myactivity;
@@ -77,7 +77,7 @@ public class List_Heroes_fragment extends Fragment implements FragmentScripture{
 
 
 
-        public List_Heroes_fragment() {
+        public List_Heroes_Specialised_fragment() {
 
 
             // main_activity=getActivity();
@@ -85,9 +85,9 @@ public class List_Heroes_fragment extends Fragment implements FragmentScripture{
         }
 
 
-        public static List_Heroes_fragment newInstance(List<Hero_Stats> strength, List<Hero_Stats> agility, List<Hero_Stats> intelli){
+        public static List_Heroes_Specialised_fragment newInstance(List<Hero_Stats> strength, List<Hero_Stats> agility, List<Hero_Stats> intelli){
 
-            List_Heroes_fragment mynewfrag=new List_Heroes_fragment();
+            List_Heroes_Specialised_fragment mynewfrag=new List_Heroes_Specialised_fragment();
 
             mynewfrag.setList(strength,agility,intelli);
 
@@ -108,7 +108,7 @@ public class List_Heroes_fragment extends Fragment implements FragmentScripture{
         // the callback interface. If not, it throws an exception
 
         try {
-            myInterfacereference = (Fragment_Interface_Activity) activity;
+            myInterfacereference = (Fragment_Interface) activity;
 
         } catch (ClassCastException e) {
 

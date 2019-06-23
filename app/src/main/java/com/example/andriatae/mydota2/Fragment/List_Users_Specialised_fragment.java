@@ -18,7 +18,7 @@ import com.example.andriatae.mydota2.Adapters.Recycle_Adapter;
 import com.example.andriatae.mydota2.Model.Hero_Stats;
 import com.example.andriatae.mydota2.Model.Player_Container;
 import com.example.andriatae.mydota2.R;
-import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface_Activity;
+import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface;
 
 import java.util.HashMap;
 import java.util.List;
@@ -34,12 +34,12 @@ import io.realm.RealmResults;
  * Created by Andria TAE on 15/03/2018.
  */
 
-public class List_Users_fragment extends Fragment implements FragmentScripture{
+public class List_Users_Specialised_fragment extends Fragment implements SpecialisedFragmentScripture {
 
 
     RealmResults<Player_Container>myPlayers;
 
-    Fragment_Interface_Activity myInterfacereference;
+    Fragment_Interface myInterfacereference;
 
     Recycle_Adapter adapter;
     Activity myactivity;
@@ -57,7 +57,7 @@ public class List_Users_fragment extends Fragment implements FragmentScripture{
 //    @BindView((R.id.MyImageButton))
 //    Button userButton;
 
-        public List_Users_fragment() {
+        public List_Users_Specialised_fragment() {
 
 
             // main_activity=getActivity();
@@ -74,7 +74,7 @@ public class List_Users_fragment extends Fragment implements FragmentScripture{
         // the callback interface. If not, it throws an exception
 
         try {
-            myInterfacereference = (Fragment_Interface_Activity) activity;
+            myInterfacereference = (Fragment_Interface) activity;
 
         } catch (ClassCastException e) {
 
@@ -387,8 +387,8 @@ public class List_Users_fragment extends Fragment implements FragmentScripture{
 
         System.out.println("inside openuserprofile creating the fragment");
 
-        ProfileFragment thisOne=ProfileFragment.newInstance(profileId);
-        List_Users_fragment myfrag=(List_Users_fragment) getFragmentManager().findFragmentById(R.id.fragment_container_user_list);
+        ProfileSpecialisedFragment thisOne= ProfileSpecialisedFragment.newInstance(profileId);
+        List_Users_Specialised_fragment myfrag=(List_Users_Specialised_fragment) getFragmentManager().findFragmentById(R.id.fragment_container_user_list);
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
 

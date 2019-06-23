@@ -16,7 +16,7 @@ import com.example.andriatae.mydota2.Adapters.Recent_Matches_Adapter;
 import com.example.andriatae.mydota2.Adapters.RecycleClickListener;
 import com.example.andriatae.mydota2.Model.Hero_Stats;
 import com.example.andriatae.mydota2.R;
-import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface_Activity;
+import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ import butterknife.ButterKnife;
  * Created by Andria on 22/03/2018.
  */
 
-public class List_Matches_Fragment extends Fragment implements FragmentScripture{
+public class List_Matches_Specialised_Fragment extends Fragment implements SpecialisedFragmentScripture {
 
 
     int idyaknow;
@@ -49,7 +49,7 @@ public class List_Matches_Fragment extends Fragment implements FragmentScripture
 
     private Activity myactivity;
 
-    Fragment_Interface_Activity myInterfacereference;
+    Fragment_Interface myInterfacereference;
     private Map<String,Integer> profileIdPairing;
     private ArrayList<String> mylist;
 
@@ -57,7 +57,7 @@ public class List_Matches_Fragment extends Fragment implements FragmentScripture
 //    @BindView((R.id.MyImageButton))
 //    Button userButton;
 
-        public List_Matches_Fragment() {
+        public List_Matches_Specialised_Fragment() {
 
 
             // main_activity=getActivity();
@@ -75,7 +75,7 @@ public class List_Matches_Fragment extends Fragment implements FragmentScripture
             // the callback interface. If not, it throws an exception
 
             try {
-                myInterfacereference = (Fragment_Interface_Activity) activity;
+                myInterfacereference = (Fragment_Interface) activity;
 
             } catch (ClassCastException e) {
 

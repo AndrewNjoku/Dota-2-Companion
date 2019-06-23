@@ -17,29 +17,34 @@ import android.widget.Toast;
 import com.astuetz.PagerSlidingTabStrip;
 import com.example.andriatae.mydota2.Adapters.MyPagerAdapter;
 import com.example.andriatae.mydota2.Application.myApplication;
-import com.example.andriatae.mydota2.Fragment.FragmentScripture;
-import com.example.andriatae.mydota2.Fragment.List_Matches_Fragment;
-import com.example.andriatae.mydota2.Fragment.List_Users_fragment;
-import com.example.andriatae.mydota2.Fragment.ProfileFragment;
+import com.example.andriatae.mydota2.Fragment.List_Users_Specialised_fragment;
+import com.example.andriatae.mydota2.Fragment.ProfileSpecialisedFragment;
+import com.example.andriatae.mydota2.Fragment.SpecialisedFragmentScripture;
+import com.example.andriatae.mydota2.Fragment.List_Matches_Specialised_Fragment;
 import com.example.andriatae.mydota2.Fragment.SuperAwesomeCardFragment;
 import com.example.andriatae.mydota2.Model.Player_Container;
-import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface_Activity;
 import com.example.andriatae.mydota2.R;
-import com.example.andriatae.mydota2.View_Presenter.Presenter;
+import com.example.andriatae.mydota2.View_Presenter.Activity_Interface;
+import com.example.andriatae.mydota2.View_Presenter.Presenter_Fragment;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class Main_Page_Dota extends AppCompatActivity implements Fragment_Interface_Activity {
+public class Main_Page_Dota extends AppCompatActivity{
+
+
+    @Inject
+    Activity_Interface.Presenter presenter;
 
 
     ProgressDialog dialog;
-
     SharedPreferences wmbPreference;
     boolean isFirstRun;
 
@@ -49,16 +54,15 @@ public class Main_Page_Dota extends AppCompatActivity implements Fragment_Interf
     //P
     SuperAwesomeCardFragment fragment1;
 
-    List_Users_fragment listFragment1;
+    List_Users_Specialised_fragment listFragment1;
 
     //Reference to every supercardfragment ever
 
-    FragmentScripture PlayerTab;
+    SpecialisedFragmentScripture PlayerTab;
 
-    FragmentScripture HeroTab;
+    SpecialisedFragmentScripture HeroTab;
 
-    FragmentScripture MatchesTab;
-
+    SpecialisedFragmentScripture MatchesTab;
 
 
     Map<String, Integer> Profile_Pairing;
@@ -69,7 +73,6 @@ public class Main_Page_Dota extends AppCompatActivity implements Fragment_Interf
 
     //Heroes Tab
     SuperAwesomeCardFragment fragment2;
-
 
     @BindView(R.id.tabs)
 
@@ -90,7 +93,7 @@ public class Main_Page_Dota extends AppCompatActivity implements Fragment_Interf
 
     View myView;
 
-    Presenter myPresenter;
+    Presenter_Fragment myPresenterFragment;
 
 
 
@@ -101,12 +104,9 @@ public class Main_Page_Dota extends AppCompatActivity implements Fragment_Interf
 
         myApp=myApplication.get();
 
-
         setContentView(R.layout.content_main__page__dota);
 
-
         initialSetup();
-
 
         //This code will only be executed once
         wmbPreference = PreferenceManager.getDefaultSharedPreferences(this);
@@ -116,18 +116,18 @@ public class Main_Page_Dota extends AppCompatActivity implements Fragment_Interf
 
         //This code is meant to only run once, this is for adding Heroes/Items, Things which will rarely change but could.
 
+
+
+
         if (isFirstRun)
         {
-
-            myPresenter.getHeroPutInRealm();
-
-            myPresenter.getProPutInRealm();
-
+            presenter.getHeroPutInRealm();
+            presenter.getProPutInRealm();
 
             SharedPreferences.Editor editor = wmbPreference.edit();
             editor.putBoolean("FIRSTRUN", false);
 
-            editor.commit();
+            editor.apply();
 
             System.out.println("Heroes have been loaded into the app");
 
@@ -140,9 +140,6 @@ public class Main_Page_Dota extends AppCompatActivity implements Fragment_Interf
         }
 
         //heroSetup();
-
-
-
 
 
         tabs.setOnTabReselectedListener(new PagerSlidingTabStrip.OnTabReselectedListener() {
@@ -159,16 +156,13 @@ public class Main_Page_Dota extends AppCompatActivity implements Fragment_Interf
         });
     }
 
-
-
-
     public void initialSetup() {
 
 
         ButterKnife.bind(this);
 
 
-        myPresenter = new Presenter(this,PlayerTab,HeroTab);
+        //myPresenterFragment = new Presenter_Fragment(this,PlayerTab,HeroTab);
         // setSupportActionBar(toolbar);
         // create our manager instance after the content view is set
         mTintManager = new SystemBarTintManager(this);
@@ -286,12 +280,7 @@ public class Main_Page_Dota extends AppCompatActivity implements Fragment_Interf
     }
 
 
-    @Override
-    public void updateFragmentPlayerTab(int id) {
 
-        myPresenter.getPlayerDataPutInRealm(id);
-
-    }
 
 
     @Override
@@ -299,7 +288,7 @@ public class Main_Page_Dota extends AppCompatActivity implements Fragment_Interf
     {
 
 
-       // myPresenter.setPlayerInfo(listFragment1);
+       // myPresenterFragment.setPlayerInfo(listFragment1);
 
     }
 
@@ -353,10 +342,10 @@ public class Main_Page_Dota extends AppCompatActivity implements Fragment_Interf
     }
 
     @Override
-    public void setProfileViewFragment(ProfileFragment myTag) {
+    public void setProfileViewFragment(ProfileSpecialisedFragment myTag) {
 
 
-          //  myPresenter.setPlayerInfo(myTag);
+          //  myPresenterFragment.setPlayerInfo(myTag);
 
     }
 
@@ -375,13 +364,13 @@ public class Main_Page_Dota extends AppCompatActivity implements Fragment_Interf
         Fragment myFrag=this.getSupportFragmentManager().findFragmentById(R.id.fragment_container_user_list);
 
 
-       FragmentScripture myScript =(List_Users_fragment)myFrag;
+       SpecialisedFragmentScripture myScript =(List_Users_Specialised_fragment)myFrag;
 
 
        // System.out.println("printing interace method"+myScript.toString());
 
 
-            myPresenter.getMatchDataPutInRealm(account_id,myScript);
+            myPresenterFragment.getMatchDataPutInRealm(account_id,myScript);
 
 
     }
@@ -405,7 +394,7 @@ public class Main_Page_Dota extends AppCompatActivity implements Fragment_Interf
     public void getHeroes() {
 
         System.out.println("in get geroes in main activity");
-        myPresenter.getHeroPutInFragment();
+        myPresenterFragment.getHeroPutInFragment();
     }
 
 
@@ -422,7 +411,7 @@ public class Main_Page_Dota extends AppCompatActivity implements Fragment_Interf
 
 
     @Override
-    public void showProfileCardFragment(ProfileFragment myPlayerCard) {
+    public void showProfileCardFragment(ProfileSpecialisedFragment myPlayerCard) {
 
 //
 //        android.support.v4.app.FragmentManager myManager=this.getSupportFragmentManager();
@@ -439,7 +428,7 @@ public class Main_Page_Dota extends AppCompatActivity implements Fragment_Interf
 
             if (position == 0) {
                 fragment1 = (SuperAwesomeCardFragment) this.getSupportFragmentManager().findFragmentById(R.id.fargment_container1);
-                listFragment1= (List_Users_fragment) this.getSupportFragmentManager().findFragmentById(R.id.fragment_container_user_list);
+                listFragment1= (List_Users_Specialised_fragment) this.getSupportFragmentManager().findFragmentById(R.id.fragment_container_user_list);
                 fragment2 = (SuperAwesomeCardFragment) this.getSupportFragmentManager().findFragmentById(R.id.fragment_container2);
             }
             if (position == 2) {
@@ -464,13 +453,13 @@ public class Main_Page_Dota extends AppCompatActivity implements Fragment_Interf
 
 
 
-            case 0: myPresenter.setMyProfileFrag(frag);
+            case 0: myPresenterFragment.setMyProfileFrag(frag);
 
                 System.out.println("set the playerTab reference");
 
             break;
 
-            case 1: myPresenter.setMyHeroFrag(frag);
+            case 1: myPresenterFragment.setMyHeroFrag(frag);
 
                 System.out.println("set the HeroTab reference");
 
@@ -480,22 +469,22 @@ public class Main_Page_Dota extends AppCompatActivity implements Fragment_Interf
     @Override
     public void update_match_recycle(int player_id_from_name) {
 
-            myPresenter.update_match_recycle(player_id_from_name);
+            myPresenterFragment.update_match_recycle(player_id_from_name);
 
     }
 
     @Override
-    public void setFragmentReferenceChild(List_Matches_Fragment list_matches_fragment) {
+    public void setFragmentReferenceChild(List_Matches_Specialised_Fragment list_matches_fragment) {
 
-       myPresenter.setMyMatchesFrag(list_matches_fragment);
+       myPresenterFragment.setMyMatchesFrag(list_matches_fragment);
 
     }
 
     @Override
-    public FragmentScripture getHeroFragment(){
+    public SpecialisedFragmentScripture getHeroFragment(){
 
 
-           return myPresenter.getMyHeroFrag();
+           return myPresenterFragment.getMyHeroFrag();
 
     }
 

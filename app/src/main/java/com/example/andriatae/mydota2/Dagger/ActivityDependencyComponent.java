@@ -1,6 +1,7 @@
 package com.example.andriatae.mydota2.Dagger;
 
 import com.example.andriatae.mydota2.Fragment.SuperAwesomeCardFragment;
+import com.example.andriatae.mydota2.Main_Activity.Main_Page_Dota;
 
 import javax.inject.Singleton;
 
@@ -9,10 +10,11 @@ import dagger.Component;
 @Singleton
 @Component(
         modules = {
-                AppInjector.class,
+                ActivityInjector.class,
         })
-public interface ActivityComponent{
+public interface ActivityDependencyComponent {
 
-        void inject(SuperAwesomeCardFragment mainFragment);
+        void inject(Main_Page_Dota mainFragment);
 
-        }
+}
+

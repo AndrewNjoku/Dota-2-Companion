@@ -4,20 +4,16 @@ import com.example.andriatae.mydota2.API.Hero_API;
 import com.example.andriatae.mydota2.API.Match_That_API;
 import com.example.andriatae.mydota2.API.Player_Search_API;
 import com.example.andriatae.mydota2.API.Pro_Players_Api;
-import com.example.andriatae.mydota2.Fragment.FragmentScripture;
+import com.example.andriatae.mydota2.Fragment.SpecialisedFragmentScripture;
 import com.example.andriatae.mydota2.Model.HeroCallback;
-import com.example.andriatae.mydota2.Model.Hero_Stats;
-import com.example.andriatae.mydota2.Model.Match_Data;
-import com.example.andriatae.mydota2.Model.Player_Container;
 import com.example.andriatae.mydota2.Model.Pro_Player;
 import com.example.andriatae.mydota2.Model.RecentMatchesCallback;
 import com.example.andriatae.mydota2.Model.SteamUserCallback;
-import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface_Activity;
+import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface;
 
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -70,7 +66,7 @@ public static int setPrimaryKey(){
 }
 
     @Override
-    public void PlayerToObjectFromApi(int steam32id, final Interactor_D_interface dataWorker, final Fragment_Interface_Activity myfragmentinterface) {
+    public void PlayerToObjectFromApi(int steam32id, final Interactor_D_interface dataWorker) {
         Player_Search_API myPlayerSearch = myAPI.create(Player_Search_API.class);
 
         myPlayerSearch.getPlayer(steam32id).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new SteamUserCallback(dataWorker));
@@ -78,7 +74,7 @@ public static int setPrimaryKey(){
     }
 
     @Override
-    public void MatchesToObjectFromAPI(final int account_id, final Interactor_D_interface dataWorker, final FragmentScripture myScript) {
+    public void MatchesToObjectFromAPI(final int account_id, final Interactor_D_interface dataWorker) {
 
         Match_That_API myMatchesSearch=  myAPI.create(Match_That_API.class);
 
@@ -107,7 +103,7 @@ public static int setPrimaryKey(){
             public void onResponse(Call<List<Pro_Player>> call, Response<List<Pro_Player>> response) {
 
                 System.out.println("Success");
-                dataWorker.addToRealmProPlayer(response.body(),);
+                dataWorker.addToRealmProPlayer(response.body());
             }
             @Override
             public void onFailure(Call<List<Pro_Player>> call, Throwable t) {

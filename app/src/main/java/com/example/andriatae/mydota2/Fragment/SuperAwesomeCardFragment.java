@@ -28,12 +28,13 @@ import com.example.andriatae.mydota2.Adapters.RecycleClickListener;
 import com.example.andriatae.mydota2.Application.myApplication;
 
 import com.example.andriatae.mydota2.Adapters.Recycle_Adapter_Heroes;
+import com.example.andriatae.mydota2.Dagger.FragmentDependencyComponent;
 import com.example.andriatae.mydota2.Model.Hero_Stats;
 import com.example.andriatae.mydota2.Model.Player;
 import com.example.andriatae.mydota2.Model.Player_Container;
 import com.example.andriatae.mydota2.R;
-import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface_Activity;
-import com.example.andriatae.mydota2.View_Presenter.Presenter;
+import com.example.andriatae.mydota2.View_Presenter.Fragment_Interface;
+import com.example.andriatae.mydota2.View_Presenter.Presenter_Fragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,11 +54,12 @@ import io.realm.RealmResults;
 
 
 
-public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment implements Fragment_Interface_Activity.View {
+public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment implements Fragment_Interface.View {
 
-
+    //Lets create and
+    FragmentDependencyComponent fragmentDependencyComponent= DaggerDependencyComponent.builder().build();
     @Inject
-    Fragment_Interface_Activity.Presenter presenter;
+    Fragment_Interface.Presenter presenter;
 
 
     Boolean runOnSecondFire=false;
@@ -178,6 +180,10 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
         System.out.println("in on create");
 
 
+        @Inject
+
+
+
     }
 
     public int getPosition(int position) {
@@ -229,7 +235,7 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
 
                         System.out.println(myid);
 
-                        Presenter.updateUser(myid);
+                        Presenter_Fragment.updateUser(myid);
 
                         //refresh current player fragment to se update made by presenter
 
@@ -270,7 +276,7 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
                                                       System.out.println("Hero button has been pressed ");
 
 
-                                                      updateViewHeroList();
+                                                      updateViewHeroTab();
                                                       switchOutFragment(myfrag);
 
 
@@ -356,7 +362,7 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
                         int player_id_from_name=profileIdPairing.get(name);
 
 
-                     myfragmentinterface.update_match_recycle(player_id_from_name);
+                     presenter.update_match_recycle(player_id_from_name);
 
                            // adapter_matches.update(player_id_from_name);
 
@@ -411,7 +417,7 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
 
                         //Open the new fragment
 
-                        Pro_Team_Fragment myteamfrag=Pro_Team_Fragment.newInstance();
+                        Pro_Team_Specialised_Fragment myteamfrag= Pro_Team_Specialised_Fragment.newInstance();
 
                         assignProTeamFragment(myteamfrag);
 
@@ -453,7 +459,7 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
 
 
     }
-    private void switchOutFragmentListHeroes(List_Heroes_fragment myfrag) {
+    private void switchOutFragmentListHeroes(List_Heroes_Specialised_fragment myfrag) {
 
         System.out.println("in fragment switch statement inside hero");
 
@@ -481,9 +487,9 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
         this.agility=agility;
         this.intellignece=intellignece;
 
-//        List_Heroes_fragment mystrengthfrag=List_Heroes_fragment.newInstance(strength);
-//        List_Heroes_fragment myagilefrag=List_Heroes_fragment.newInstance(agility);
-//        List_Heroes_fragment myintelifrag=List_Heroes_fragment.newInstance(intellignece);
+//        List_Heroes_Specialised_fragment mystrengthfrag=List_Heroes_Specialised_fragment.newInstance(strength);
+//        List_Heroes_Specialised_fragment myagilefrag=List_Heroes_Specialised_fragment.newInstance(agility);
+//        List_Heroes_Specialised_fragment myintelifrag=List_Heroes_Specialised_fragment.newInstance(intellignece);
 
 //
 //        FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -512,7 +518,7 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
 
     private void attachUserFragment() {
 
-        List_Users_fragment myUsers = new List_Users_fragment();
+        List_Users_Specialised_fragment myUsers = new List_Users_Specialised_fragment();
         //Bundle c = new Bundle();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
 // Replace whatever is in the fragment_container view with this fragment,
@@ -526,7 +532,7 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
     }
 
 
-    private void attachProTeamFragment(Pro_Team_Fragment myteamfrag) {
+    private void attachProTeamFragment(Pro_Team_Specialised_Fragment myteamfrag) {
 
 
 
@@ -558,7 +564,7 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
 
     private void addMatchesRecycleFragment(){
 
-        List_Matches_Fragment myMatches = new List_Matches_Fragment();
+        List_Matches_Specialised_Fragment myMatches = new List_Matches_Specialised_Fragment();
         //Bundle c = new Bundle();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
@@ -638,11 +644,10 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
     @Override
     public void updateViewHeroList() {
 
-            List_Heroes_fragment myfragment=List_Heroes_fragment.newInstance(strength,agility,intellignece);
+            List_Heroes_Specialised_fragment myfragment= List_Heroes_Specialised_fragment.newInstance(strength,agility,intellignece);
             switchOutFragmentListHeroes(myfragment);
         }
 
-    }
 
     @Override
     public void updateViewRecentMatches() {
