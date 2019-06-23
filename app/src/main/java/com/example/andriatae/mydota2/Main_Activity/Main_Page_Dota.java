@@ -158,10 +158,12 @@ public class Main_Page_Dota extends AppCompatActivity{
 
     public void initialSetup() {
 
+        //Lets inject our actiity componenet
+
+        this.getApplication().getFragmentComponent
+
 
         ButterKnife.bind(this);
-
-
         //myPresenterFragment = new Presenter_Fragment(this,PlayerTab,HeroTab);
         // setSupportActionBar(toolbar);
         // create our manager instance after the content view is set
@@ -179,6 +181,8 @@ public class Main_Page_Dota extends AppCompatActivity{
 
 
     }
+
+
 
 
 
@@ -279,25 +283,6 @@ public class Main_Page_Dota extends AppCompatActivity{
 
     }
 
-
-
-
-
-    @Override
-    public void showProfileinfo()
-    {
-
-
-       // myPresenterFragment.setPlayerInfo(listFragment1);
-
-    }
-
-
-
-    public void doActionForNextFragment(){
-
-
-    }
 
         @Override
         public Fragment getSuperAwesomeFragment(int id) {

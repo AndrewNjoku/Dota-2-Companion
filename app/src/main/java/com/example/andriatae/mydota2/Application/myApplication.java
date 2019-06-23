@@ -17,13 +17,10 @@ public class myApplication extends Application {
     // Overriding this method is totally optional!
 
 private ActivityDependencyComponent myActivityComponent;
+private FragmentDependencyComponent myFragmentComponent;
 
 
     public static myApplication INSTANCE;
-  //  private static final String DATABASE_NAME = "MyDatabase";
-//     static final String PREFERENCES = "RoomDemo.preferences";
-//     static final String KEY_FORCE_UPDATE = "force_update";
-
      public static RealmConfiguration realmConfigurationPlayer;
      public static RealmConfiguration realmConfigurationMatches;
      public static RealmConfiguration realmConfigurationHero;
@@ -45,9 +42,12 @@ private ActivityDependencyComponent myActivityComponent;
         super.onCreate();
         INSTANCE = this;
 
-
         //These are singletons so we build here to ensure we are on a global app scope for interacting with these
         myActivityComponent = DaggerDependencyComponent.builder().build();
+
+        //Main fragment component
+        myFragmentComponent = DaggerDependencyComponent.builder().build();
+
         // Required initialization logic here!
 
 
@@ -111,8 +111,13 @@ private ActivityDependencyComponent myActivityComponent;
 
     public ActivityDependencyComponent getActivityComponent (){
 
+        return myActivityComponent;
 
+    }
 
+    public FragmentDependencyComponent getFragmentComponent () {
+
+        return myFragmentComponent;
     }
 
 

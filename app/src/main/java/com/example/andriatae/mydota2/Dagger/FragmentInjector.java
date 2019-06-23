@@ -15,7 +15,9 @@ public class FragmentInjector {
 
     @Provides
     @Singleton
-    Fragment_Interface.Presenter provideMainFragmentPresenter(Interactor_A_Interface a, Interactor_D_interface d) {
+    Fragment_Interface.Presenter provideMainFragmentPresenter() {
+
+
         return new Presenter_Fragment(a, d);
     }
 

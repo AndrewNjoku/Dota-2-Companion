@@ -15,6 +15,7 @@ public class RecentMatchesCallback implements Consumer<List<Match_Data>> {
 
     private Interactor_D_interface myRealmInterface;
     private final int account_id;
+    private List<Match_Data>myCurrentUserRecentMatches;
 
 
     public RecentMatchesCallback(Interactor_D_interface myRealmInterface, final int account_id) {
@@ -25,14 +26,19 @@ public class RecentMatchesCallback implements Consumer<List<Match_Data>> {
     @Override
     public void accept(List<Match_Data> match_data) {
 
-        for (Match_Data m : match_data) {
+        this.myCurrentUserRecentMatches = match_data;
+
+
+        for (Match_Data m : myCurrentUserRecentMatches) {
+
+            //set id
 
             m.setPlayer_id(account_id);
-
             System.out.println("Player match player id has set to" + m.getPlayer_id());
 
-
         }
+
+        myRealmInterface.addToRealmRecentMatches();
 
     }
 }

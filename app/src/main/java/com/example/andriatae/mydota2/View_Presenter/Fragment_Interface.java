@@ -23,6 +23,8 @@ public interface Fragment_Interface {
 
         Map<String, Integer> getUsers();
 
+        void updateUserOnInteraction(String myUser32id);
+
         void getHeroes();
 
         void setFragmentPair(int position);
@@ -34,6 +36,8 @@ public interface Fragment_Interface {
 
     interface View {
         //View contract - updating the view
+
+
 
         void RefreshFrame();
         //update view for current fragment, may involve attaching detaching sub-fragments

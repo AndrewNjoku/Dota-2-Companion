@@ -58,6 +58,7 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
 
     //Lets create and
     FragmentDependencyComponent fragmentDependencyComponent= DaggerDependencyComponent.builder().build();
+
     @Inject
     Fragment_Interface.Presenter presenter;
 
@@ -134,24 +135,26 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
 
     ArrayList<String> mylist;
 
-    private Activity activityReference;
 
 
     public SuperAwesomeCardFragment() {
 
+
+        //TODO do i ned this ?
         main_activity = getActivity();
+
         profileIdPairing = null;
         myAplicationFrag = myApplication.get();
+
 
     }
 
 
 
-
+//Returns an instance for the viewpager
     public static SuperAwesomeCardFragment newInstance(int position) {
 
         SuperAwesomeCardFragment f = new SuperAwesomeCardFragment();
-
 
         // Create bundle and add the position int to distinguish which fragment this will be for
 
@@ -173,16 +176,15 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
 
         super.onCreate(savedInstanceState);
 
+        //This is how we differentiate between our viewpager instances.
+        assert getArguments() != null;
         position = getArguments().getInt(ARG_POSITION);
 
-        System.out.println("Fragment created " + position);
+
+        //TODO -> Make this into a toast
+        System.out.println("Fragment created in : " + position + "Position");
 
         System.out.println("in on create");
-
-
-        @Inject
-
-
 
     }
 
@@ -196,6 +198,8 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        (myApplication) getActivity().getApplication().ge
 
         switch (position) {
 
@@ -235,7 +239,7 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
 
                         System.out.println(myid);
 
-                        Presenter_Fragment.updateUser(myid);
+                        presenter.updateUser(myid);
 
                         //refresh current player fragment to se update made by presenter
 
@@ -642,6 +646,21 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
     }
 
     @Override
+    public void updateFragmentPlayerTab() {
+
+    }
+
+    @Override
+    public void updateViewHeroTab() {
+
+    }
+
+    @Override
+    public void updateFragmentRecentMatchesTab() {
+
+    }
+
+    @Override
     public void updateViewHeroList() {
 
             List_Heroes_Specialised_fragment myfragment= List_Heroes_Specialised_fragment.newInstance(strength,agility,intellignece);
@@ -656,6 +675,11 @@ public class SuperAwesomeCardFragment extends android.support.v4.app.Fragment im
 
     @Override
     public void initMatchValuesToShow() {
+
+    }
+
+    @Override
+    public void loadHeroesToListsFromRealm(List<Hero_Stats> strengthListt, List<Hero_Stats> agilListt, List<Hero_Stats> intelliListt) {
 
     }
 }

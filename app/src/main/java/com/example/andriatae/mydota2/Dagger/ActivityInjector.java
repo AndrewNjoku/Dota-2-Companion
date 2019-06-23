@@ -19,8 +19,14 @@ public class ActivityInjector {
 
     @Provides
     @Singleton
-    Activity_Interface.Presenter provideMainFragmentPresenter(Interactor_A_Interface a, Interactor_D_interface d) {
-        return new Presenter_Activity(a, d);
+    Activity_Interface.Presenter provideMainFragmentPresenter() {
+
+        Interactor_API myApiInteactor = Interactor_API.getDotaApiClient();
+
+        Interactor_Data myRealmInteractor = Interactor_Data.getDotaRealmClient();
+
+
+        return new Presenter_Activity(myApiInteactor, myRealmInteractor);
     }
 
     // provides singleton instance for performing network calls creating an object based on a pojo blueprint,

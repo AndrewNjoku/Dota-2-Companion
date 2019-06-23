@@ -4,6 +4,7 @@ import com.example.andriatae.mydota2.Fragment.SpecialisedFragmentScripture;
 import com.example.andriatae.mydota2.Fragment.List_Matches_Specialised_Fragment;
 import com.example.andriatae.mydota2.Fragment.ProfileSpecialisedFragment;
 import com.example.andriatae.mydota2.Fragment.SuperAwesomeCardFragment;
+import com.example.andriatae.mydota2.Interactor.Interactor_API;
 import com.example.andriatae.mydota2.Interactor.Interactor_A_Interface;
 import com.example.andriatae.mydota2.Interactor.Interactor_D_interface;
 
@@ -29,10 +30,13 @@ public class Presenter_Fragment implements Fragment_Interface.Presenter{
 
     //Testing
 
-    public Presenter_Fragment(Interactor_A_Interface apiWorker, Interactor_D_interface dataWorker ) {
+    public Presenter_Fragment() {
         //TODO these are application scope modules which need to be accessed as such
 
-        this.apiWorker = apiWorker;
+        //get RealmInteractor from the main activity
+
+
+        this.apiWorker = Interactor_API.getCodeWarsApiClient()
         this.dataWorker = dataWorker;
 
     }
@@ -121,6 +125,11 @@ public class Presenter_Fragment implements Fragment_Interface.Presenter{
     @Override
     public Map<String, Integer> getUsers() {
         return null;
+    }
+
+    @Override
+    public void updateUserOnInteraction(String myUser32id) {
+
     }
 
     @Override

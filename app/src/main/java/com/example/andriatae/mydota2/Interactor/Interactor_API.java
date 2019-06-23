@@ -31,7 +31,7 @@ public class Interactor_API implements Interactor_A_Interface {
     Interactor_D_interface realmInterface;
     // id to set as primary key
     static int id=1;
-    Retrofit myAPI;
+    private Retrofit myAPI;
 
 
     public Interactor_API(Interactor_D_interface realmInterface) {
@@ -55,6 +55,12 @@ public class Interactor_API implements Interactor_A_Interface {
 
                .build();
 
+    }
+
+
+    public static Interactor_API getDotaApiClient( Interactor_D_interface myRealmReference) {
+
+        return new Interactor_API(myRealmReference);
     }
 
 public static int setPrimaryKey(){
@@ -88,7 +94,7 @@ public static int setPrimaryKey(){
 
         Hero_API myHeroAPI= myAPI.create(Hero_API.class);
 
-       myHeroAPI.getThoseHeroes().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new HeroCallback(dataWorker));
+       myHeroAPI.getThoseHeroes().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new HeroCallback(realmInterface));
 
     }
 

@@ -22,7 +22,7 @@ public class HeroCallback implements Consumer<List<Hero_Stats>>{
 
 
     @Override
-    public void accept(List<Hero_Stats> hero_stats) throws Exception {
+    public void accept(List <Hero_Stats> hero_stats) throws Exception {
 
         myRealmInterface.addToRealmHero(hero_stats);
 

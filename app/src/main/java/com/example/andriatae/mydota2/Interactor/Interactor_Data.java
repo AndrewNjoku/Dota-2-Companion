@@ -17,33 +17,43 @@ import io.realm.RealmResults;
  * Created by Andria TAE on 14/03/2018.
  */
 
-    public class Interactor_Data implements Interactor_D_interface{
+    public class Interactor_Data implements Interactor_D_interface {
 
-        //view callback for updating view
+    //view callback for updating view of fragment
     private final Fragment_Interface.View myView;
+
 
     myApplication myapplication;
 
-        Realm data1;
-        Realm data2;
+    Realm data1;
+    Realm data2;
 
 
-        public Interactor_Data(Fragment_Interface.View myView){
+    public Interactor_Data() {
 
-            this.myView=myView;
-            myapplication=myApplication.get();
+        myapplication = myApplication.get();
 
-                   // RealmConfiguration myConfig=myapplication.getRealm("Heroes");
-        }
+        // RealmConfiguration myConfig=myapplication.getRealm("Heroes");
+    }
+
+
+    //We may need to update the view in two scenarios, one for the fragment and one for the activity aswell
+    // We shall include methods for both of these.
+    //Here we bind the view
+    public static Interactor_Data getDotaRealmClient() {
+
+        return new Interactor_Data();
+    }
+
 
 //
 
     @Override
     public void addToRealmRecentMatches(final List<Match_Data> match_data) {
 
-        RealmConfiguration getMatchesConfig=myapplication.getRealm("Match");
+        RealmConfiguration getMatchesConfig = myapplication.getRealm("Match");
 
-        data2=Realm.getInstance(getMatchesConfig);
+        data2 = Realm.getInstance(getMatchesConfig);
 
         data2.executeTransactionAsync(new Realm.Transaction() {
             @Override
@@ -51,10 +61,9 @@ import io.realm.RealmResults;
 
                 realm.copyToRealmOrUpdate(match_data);
 
-                for (Match_Data m:match_data)
-                {
+                for (Match_Data m : match_data) {
 
-                    System.out.println("adding these matches to database for user:"+m.getMatchId());
+                    System.out.println("adding these matches to database for user:" + m.getMatchId());
 
                 }
                 myView.initMatchValuesToShow();
@@ -71,10 +80,10 @@ import io.realm.RealmResults;
         System.out.println("adding heroes to reaLM");
 
 
-        RealmConfiguration myheroconfig=myapplication.getRealm("Hero");
+        RealmConfiguration myheroconfig = myapplication.getRealm("Hero");
 
 
-        Realm realm=Realm.getInstance(myheroconfig);
+        Realm realm = Realm.getInstance(myheroconfig);
 
 
         realm.executeTransactionAsync(new Realm.Transaction() {
@@ -92,36 +101,34 @@ import io.realm.RealmResults;
     @Override
     public void getHeroesFromRealmUpdateView() {
 
-        RealmConfiguration myheroconfig=myapplication.getRealm("Hero");
+        RealmConfiguration myheroconfig = myapplication.getRealm("Hero");
 
-        Realm realm=Realm.getInstance(myheroconfig);
+        Realm realm = Realm.getInstance(myheroconfig);
 
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
 
-                List<Hero_Stats>str;
-                List<Hero_Stats>agi;
-                List<Hero_Stats>inte;
+                List<Hero_Stats> str;
+                List<Hero_Stats> agi;
+                List<Hero_Stats> inte;
 
-                RealmResults<Hero_Stats>mystr=realm.where(Hero_Stats.class).equalTo("primaryAttr","str").findAll();
-                RealmResults<Hero_Stats>myagi=realm.where(Hero_Stats.class).equalTo("primaryAttr","agi").findAll();
-                RealmResults<Hero_Stats>myinti=realm.where(Hero_Stats.class).equalTo("primaryAttr","int").findAll();
+                RealmResults<Hero_Stats> mystr = realm.where(Hero_Stats.class).equalTo("primaryAttr", "str").findAll();
+                RealmResults<Hero_Stats> myagi = realm.where(Hero_Stats.class).equalTo("primaryAttr", "agi").findAll();
+                RealmResults<Hero_Stats> myinti = realm.where(Hero_Stats.class).equalTo("primaryAttr", "int").findAll();
 
-                List<Hero_Stats>strengthListt=realm.copyFromRealm(mystr);
-                List<Hero_Stats>agilListt=realm.copyFromRealm(mystr);
-                List<Hero_Stats>intelliListt=realm.copyFromRealm(mystr);
+                List<Hero_Stats> strengthListt = realm.copyFromRealm(mystr);
+                List<Hero_Stats> agilListt = realm.copyFromRealm(mystr);
+                List<Hero_Stats> intelliListt = realm.copyFromRealm(mystr);
 
 
-                if ((mystr.isLoaded())&&(myagi.isLoaded())&&myinti.isLoaded())
-                {
+                if ((mystr.isLoaded()) && (myagi.isLoaded()) && myinti.isLoaded()) {
 
                     System.out.println("all three hero lists are loaded in database interactor pushing to fragment via view Callback");
 
-                    myView.loadHeroesToArrayFromRealm(strengthListt,agilListt,intelliListt);
+                    myView.loadHeroesToArrayFromRealm(strengthListt, agilListt, intelliListt);
 
-                }
-                else{
+                } else {
 
                     System.out.println("not finished");
                 }
@@ -135,8 +142,8 @@ import io.realm.RealmResults;
     @Override
     public void addToRealmProPlayer(final List<Pro_Player> body) {
 
-        RealmConfiguration myproconfig=myapplication.getRealm("Pro");
-        Realm realm=Realm.getInstance(myproconfig);
+        RealmConfiguration myproconfig = myapplication.getRealm("Pro");
+        Realm realm = Realm.getInstance(myproconfig);
 
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
@@ -172,3 +179,14 @@ import io.realm.RealmResults;
         });
 
     }
+
+    public Fragment_Interface.View getMyView() {
+        return myView;
+    }
+
+    public void setMyView(Fragment_Interface.View viewtoset)
+    {
+
+
+    }
+}
